@@ -1,0 +1,11 @@
+nav ul li{
+    display: inline;
+    border-left:1px solid #999;
+    padding:0 10px;
+}
+nav ul li:first-child{
+    border-left:none;
+}
+ul {
+    list-style-type: none;
+}
