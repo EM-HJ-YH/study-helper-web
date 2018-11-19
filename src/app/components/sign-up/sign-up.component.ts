@@ -9,13 +9,7 @@ import { User } from '../../user';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  user: User = {
-      name: '',
-      email: '',
-      password: '',
-      major: '',
-      grade: 1
-  };
+  user: User;
   signUpForm: FormGroup;
 
   constructor(fb: FormBuilder) { 
@@ -33,11 +27,13 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(form: any): void {
     this.user = {
-      name: form.name,
-      email: form.email,
-      password: form.pass,
+      _id: null,
+      userName: form.name,
+      userId: form.email,
+      userPw: form.pass,
       major: form.major,
-      grade: form.grade
+      admissionYear: form.grade,
+      __v: null
     };
     console.log(this.user);
     location.href="signin";

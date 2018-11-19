@@ -9,13 +9,7 @@ import { User } from '../../user';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  user: User = {
-    name: '',
-    email: '',
-    password: '',
-    major: '',
-    grade: 1
-  };
+  user: User;
   signInForm: FormGroup;
 
   constructor(fb: FormBuilder) { 
