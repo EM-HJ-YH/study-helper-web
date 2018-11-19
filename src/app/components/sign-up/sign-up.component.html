@@ -1,29 +1,30 @@
-<h2>회원가입</h2>
-<form name="sign-up-form">
-<div>
-  <input type="text" name="name" placeholder="이름">
-</div>
-<div>
-  <input type="email" name="email" placeholder="이메일주소">
-</div>
-<div>
-  <input type="password" name="pass" placeholder="패스워드">
-</div>
-<div>
-    <select name='major'>
-        <option value='' selected>전공</option>
-        <option value=''>IT응용시스템공학과</option>
-        <option value=''>...과</option>
-        <option value=''>...과</option>
+<h2 class="ui header">회원가입</h2>
+<form name="signUpForm"
+      [formGroup]="signUpForm"
+      (ngSubmit)="onSubmit(signUpForm.value)">
+  <div>
+    <input type="text" name="name" placeholder="이름" [formControl]="signUpForm.controls['name']">
+  </div>
+  <div>
+    <input type="email" name="email" placeholder="이메일주소"  [formControl]="signUpForm.controls['email']">
+  </div>
+  <div>
+    <input type="password" name="pass" placeholder="패스워드" [formControl]="signUpForm.controls['pass']">
+  </div>
+  <div>
+    <select name='major' [formControl]="signUpForm.controls['major']">
+      <option value='' selected>전공</option>
+      <option value='IT응용시스템공학과'>IT응용시스템공학과</option>
+      <option value='1과'>...과</option>
+      <option value='2과'>...과</option>
     </select>
-</div>
-<div>
-  <label>학년</label>
-  <input type="radio" name="grade" value=1>1
-  <input type="radio" name="grade" value=2>2
-  <input type="radio" name="grade" value=3>3
-  <input type="radio" name="grade" value=4>4
-</div>
-<input type="submit">
+  </div>
+  <div>
+    <label>학년</label>
+    <input type="radio" name="grade" value=1 [formControl]="signUpForm.controls['grade']"><label>1</label>
+    <input type="radio" name="grade" value=2 [formControl]="signUpForm.controls['grade']"><label>2</label>
+    <input type="radio" name="grade" value=3 [formControl]="signUpForm.controls['grade']"><label>3</label>
+    <input type="radio" name="grade" value=4 [formControl]="signUpForm.controls['grade']"><label>4</label>
+  </div>
+  <button type="submit">회원 가입</button>
 </form>
-

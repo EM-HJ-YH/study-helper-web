@@ -1,3 +1,17 @@
-<p>
-  admin works!
-</p>
+<h2>관리자 페이지</h2>
+<table class="table table-striped" style="width: 70%; margin: auto;">
+  <tr>
+    <th>이름</th>
+    <th>이메일</th>
+    <th>비밀번호</th>
+    <th>전공</th>
+    <th>학년</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{user.name}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.password}}</td>
+    <td>{{user.major}}</td>
+    <td>{{user.grade}}</td>
+  </tr>
+</table>
