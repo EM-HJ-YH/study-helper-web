@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule }    from '@angular/http';
+import { HttpClientModule }    from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule }     from './app-routing.module';
@@ -16,6 +17,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { NoticeComponent } from './components/notice/notice.component';
 import { CafeComponent } from './components/cafe/cafe.component';
+
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -36,9 +39,10 @@ import { CafeComponent } from './components/cafe/cafe.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

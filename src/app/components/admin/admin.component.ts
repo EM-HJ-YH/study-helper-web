@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../user';
+import { UserService } from 'src/app/user.service';
+import { Observable } from 'rxjs/index';
 
 @Component({
   selector: 'app-admin',
@@ -7,15 +9,30 @@ import { User } from '../../user';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  users: User[] = [
-    { name: 'name 1', email: 'email 1', password: 'password 1', major: 'major 1', grade: 1 },
-    { name: 'name 2', email: 'email 2', password: 'password 2', major: 'major 2', grade: 2 },
-    { name: 'name 3', email: 'email 3', password: 'password 3', major: 'major 3', grade: 3 }
-  ]
+  users: User[];
+  posts: Post[];
+  
+  constructor(private userService: UserService) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  getUsers() {
+    console.log("getUsers()");
+    this.userService
+        .getUsers()
+        .subscribe((users)=>{
+          console.log(users);  // for testing if works on console
+          this.users = users;
+        });
   }
 
+  ngOnInit() {
+    this.getUsers();
+    console.log("users_get_test\n"+this.users);
+  }
+
+}
+interface Post{
+  id:number,
+  title:string,
+  body:string,
+  userId:number
 }
