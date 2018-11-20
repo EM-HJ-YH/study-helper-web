@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { User } from '../../user';
 
@@ -9,21 +10,20 @@ import { User } from '../../user';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  user: User;
   signInForm: FormGroup;
 
-  constructor(fb: FormBuilder) { 
+  constructor(private router: Router, fb: FormBuilder) { 
     this.signInForm = fb.group({
-      'email': ['', Validators.required],
-      'pass': ['', Validators.required],
+      'userId': ['', Validators.required],
+      'userPw': ['', Validators.required],
     });
   }
 
   ngOnInit() {
   }
   
-  onSubmit(form: any): void {
-    console.log(form.email+form.pass);
-    location.href="mypage";
+  onLoginSubmit(form: any): void {
+    // form.userId+form.userPw;
+    this.router.navigate(['mypage']);
   }
 }

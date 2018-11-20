@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { User } from '../../user';
 import { UserService } from 'src/app/user.service';
@@ -13,7 +14,7 @@ export class SignUpComponent implements OnInit {
   user: User;
   signUpForm: FormGroup;
 
-  constructor(private userService: UserService, fb: FormBuilder) { 
+  constructor(private userService: UserService, private router: Router, fb: FormBuilder) { 
     this.signUpForm = fb.group({
       'name': ['', Validators.required],
       'email': ['', Validators.required],
@@ -38,7 +39,7 @@ export class SignUpComponent implements OnInit {
     this.userService.registerUser(this.user).subscribe(data => {
       if(data.success) {
         alert('가입에 성공하였습니다.');
-        location.href="signin";
+        this.router.navigate(['signin']);
       } else {
         alert('가입에 실패하였습니다.');
       }

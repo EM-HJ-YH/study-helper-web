@@ -3,11 +3,17 @@
     Study Helper
   </h3>
   <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 text-dark" routerLink="/signup" routerLinkActive="active">
+    <a *ngIf=true class="p-2 text-dark" routerLink="/signup" routerLinkActive="active">
       Sign Up
     </a>
-    <a class="p-2 text-dark" routerLink="/signin" routerLinkActive="active">
+    <a *ngIf=true class="p-2 text-dark" routerLink="/signin" routerLinkActive="active">
       Login
+    </a>
+    <a *ngIf=true class="p-2 text-dark" routerLink="/mypage" routerLinkActive="active">
+      My Page
+    </a>
+    <a *ngIf=true class="p-2 text-dark" (click)="onLogoutClick()" href="#">
+      Logout
     </a>
     <a class="p-2 text-muted font-weight-light" routerLink="/admin" routerLinkActive="active">
       <small>Admin</small>
@@ -17,7 +23,6 @@
 <div class="nav-scroller py-1 mb-2">
   <nav class="nav d-flex justify-content-between">
     <ul>
-      <li><a class="p-2 text-muted" routerLink="/mypage" routerLinkActive="active">마이 페이지</a></li>
       <li><a class="p-2 text-muted" routerLink="/recruitment" routerLinkActive="active">모집 게시판</a></li>
       <li><a class="p-2 text-muted" routerLink="/grouppage" routerLinkActive="active">그룹 게시판</a></li>
       <li><a class="p-2 text-muted" routerLink="/calendar" routerLinkActive="active">일정</a></li>
