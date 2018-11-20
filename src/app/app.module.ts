@@ -19,6 +19,7 @@ import { NoticeComponent } from './components/notice/notice.component';
 import { CafeComponent } from './components/cafe/cafe.component';
 
 import { UserService } from './user.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UserService } from './user.service';
     AdminComponent,
     RecruitmentComponent,
     NoticeComponent,
-    CafeComponent
+    CafeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
