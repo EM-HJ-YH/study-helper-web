@@ -1,12 +1,14 @@
-<h2>로그인</h2>
+<h5 class="page-header">Login</h5>
 <form name="signInForm"
       [formGroup]="signInForm"
-      (ngSubmit)="onSubmit(signInForm.value)">
-  <div>
-    <input type="email" name="email" placeholder="이메일주소" [formControl]="signInForm.controls['email']">
+      (ngSubmit)="onLoginSubmit(signInForm.value)">
+  <div class="form-group">
+    <label for="userId">이메일</label>
+    <input class="form-control" type="email" name="userId" [formControl]="signInForm.controls['userId']">
   </div>
-  <div>
-    <input type="password" name="pass" placeholder="패스워드" [formControl]="signInForm.controls['pass']">
+  <div class="form-group">
+    <label for="userPw">비밀번호</label>
+    <input class="form-control" type="password" name="userPw" [formControl]="signInForm.controls['userPw']">
   </div>
-  <button type="submit">로그인</button>
+  <button type="submit" class="btn btn-outline-dark" value="Login">로그인</button>
 </form>
