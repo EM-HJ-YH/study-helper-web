@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { User } from '../../user';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +13,7 @@ export class SignUpComponent implements OnInit {
   user: User;
   signUpForm: FormGroup;
 
-  constructor(fb: FormBuilder) { 
+  constructor(private userService: UserService, fb: FormBuilder) { 
     this.signUpForm = fb.group({
       'name': ['', Validators.required],
       'email': ['', Validators.required],
@@ -27,15 +28,20 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(form: any): void {
     this.user = {
-      _id: null,
       userName: form.name,
       userId: form.email,
       userPw: form.pass,
       major: form.major,
-      admissionYear: form.grade,
-      __v: null
+      admissionYear: form.grade
     };
-    console.log(this.user);
-    location.href="signin";
+
+    this.userService.registerUser(this.user).subscribe(data => {
+      if(data.success) {
+        alert('가입에 성공하였습니다.');
+        location.href="signin";
+      } else {
+        alert('가입에 실패하였습니다.');
+      }
+    })
   }
 }

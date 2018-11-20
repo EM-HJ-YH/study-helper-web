@@ -1,8 +1,4 @@
 <h2>관리자 페이지</h2>
-<div *ngFor="let post of posts">
-  <h4>{{post.name}}</h4>
-  <p>{{post.username}}</p>
-</div>
 <table class="table table-striped" style="width: 70%; margin: auto;">
   <tr>
     <th>이름</th>
@@ -10,6 +6,7 @@
     <th>비밀번호</th>
     <th>전공</th>
     <th>학년</th>
+    <th>탈퇴</th>
   </tr>
   <tr *ngFor="let user of users">
     <td>{{user.userName}}</td>
@@ -17,5 +14,6 @@
     <td>{{user.userPw}}</td>
     <td>{{user.major}}</td>
     <td>{{user.admissionYear}}</td>
+    <td><button (click)=deleteUser(user.userId)>탈퇴</button></td>
   </tr>
 </table>

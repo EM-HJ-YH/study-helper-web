@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../user';
 import { UserService } from 'src/app/user.service';
-import { Observable } from 'rxjs/index';
 
 @Component({
   selector: 'app-admin',
@@ -10,29 +9,48 @@ import { Observable } from 'rxjs/index';
 })
 export class AdminComponent implements OnInit {
   users: User[];
-  posts: Post[];
   
   constructor(private userService: UserService) { }
 
+    // 유저 한 명 찾기
+  // onSubmit(form: any): void {
+  //   this.userService
+  //       .getUser(form.email)
+  //       .subscribe((user)=>{
+  //         console.log(user);
+  //         this.searchedUser = user;
+  //       });
+  // }
+
   getUsers() {
-    console.log("getUsers()");
     this.userService
         .getUsers()
         .subscribe((users)=>{
-          console.log(users);  // for testing if works on console
-          this.users = users;
+          this.users = users.result;
         });
   }
 
-  ngOnInit() {
-    this.getUsers();
-    console.log("users_get_test\n"+this.users);
+  deleteUser(id: string) {
+    this.userService
+        .deleteUser(id).subscribe();
+    location.reload();
   }
 
-}
-interface Post{
-  id:number,
-  title:string,
-  body:string,
-  userId:number
+  // 유저 업데이트
+  // updateUser(user: User) {
+  //   user = {
+  //     userName: "update Test",
+  //     userId: user.userId,
+  //     userPw: "string",
+  //     major: "string",
+  //     admissionYear: 0
+  //   }
+  //   this.userService
+  //       .updateUser(user)
+  //       .subscribe(() => location.reload());
+  // }
+
+  ngOnInit() {
+    this.getUsers();
+  }
 }
