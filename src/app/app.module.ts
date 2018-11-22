@@ -21,6 +21,7 @@ import { CafeComponent } from './components/cafe/cafe.component';
 import { UserService } from './user.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthService } from './auth.service';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AuthService } from './auth.service';
     RecruitmentComponent,
     NoticeComponent,
     CafeComponent,
-    NavbarComponent
+    NavbarComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

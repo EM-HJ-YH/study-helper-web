@@ -1,0 +1,80 @@
+<h5 class="page-header">Edit Profile</h5>
+<form name="editForm"
+      [formGroup]="editForm"
+      (ngSubmit)="onSubmit(editForm.value)">
+  <div class="form-group">
+    <input class="form-control" type="text" name="name" value="{{currentUser.userName}}" [formControl]="editForm.controls['name']">
+  </div>
+
+  <div class="form-group">
+    <input class="form-control" type="password" name="pass" placeholder="변경할 패스워드 입력" [formControl]="editForm.controls['pass']">
+  </div>
+
+  <div class="form-group">
+    <label for="major">전공 선택</label>
+    <select class="form-control" name="major" value="{{currentUser.major}}" [formControl]="editForm.controls['major']">
+      <option value="">Choose...</option>
+      <optgroup label="인문대학">
+        <option value='한국어문학부'>한국어문학부</option>
+        <option value='영어영문학부'>영어영문학부</option>
+        <option value='역사문화학부'>역사문화학부</option>
+        <option value='지식정보학부'>지식정보학부</option>
+        <option value='응용인문학부'>응용인문학부</option>
+      </optgroup>
+      <optgroup label="사회과학대학">
+        <option value='경영학부'>경영학부</option>
+        <option value='행정학과'>행정학과</option>
+        <option value='경제학과'>경제학과</option>
+        <option value='무역학과'>무역학과</option>
+        <option value='부동산학과'>부동산학과</option>
+        <option value='부동산/세무경영학과'>부동산/세무경영학과</option>
+        <option value='공공인재학과'>공공인재학과</option>
+      </optgroup>
+      <optgroup label="예술대학">
+        <option value='무용학과'>무용학과</option>
+        <option value='회화과'>회화과</option>
+        <option value='시각영상/디자인전공'>시각영상/디자인전공</option>
+        <option value='애니메이션/제품디자인전공'>애니메이션/제품디자인전공</option>
+        <option value='인테리어디자인전공'>인테리어디자인전공</option>
+        <option value='패션디자인전공'>패션디자인전공</option>
+        <option value='의류패션산업전공'>의류패션산업전공</option>
+        <option value='패션학부'>패션학부</option>
+        <option value='뷰티디자인학과'>뷰티디자인학과</option>
+      </optgroup>
+      <optgroup label="공과대학">
+        <option value='컴퓨터공학부'>컴퓨터공학부</option>
+        <option value='전자정보공학과'>전자정보공학과</option>
+        <option value='IT응용시스템공학과'>IT응용시스템공학과</option>
+        <option value='산업경영공학과'>산업경영공학과</option>
+        <option value='기계시스템공학과'>기계시스템공학과</option>
+      </optgroup>
+    </select>
+  </div>
+    
+  <div class="form-group">
+    <label for="grade">학년 선택</label><br>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label" for="grade1">
+      <input class="form-check-input" type="radio" name="grade" id="grade1" value=1 [formControl]="editForm.controls['grade']">
+      1</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label" for="grade2">
+      <input class="form-check-input" type="radio" name="grade" id="grade2" value=2 [formControl]="editForm.controls['grade']">
+      2</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label" for="grade3">
+      <input class="form-check-input" type="radio" name="grade" id="grade3" value=3 [formControl]="editForm.controls['grade']">
+      3</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label" for="grade4">
+      <input class="form-check-input" type="radio" name="grade" id="grade4" value=4 [formControl]="editForm.controls['grade']">
+      4</label>
+    </div>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-outline-dark" value="edit">수정</button>
+  </div>
+</form>

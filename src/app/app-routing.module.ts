@@ -11,6 +11,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { NoticeComponent } from './components/notice/notice.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CafeComponent } from './components/cafe/cafe.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { path: 'signup',  component: SignUpComponent },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'mypage/notice', component: NoticeComponent },
   { path: 'admin', component: AdminComponent },
-  { path: 'cafe', component: CafeComponent }
+  { path: 'cafe', component: CafeComponent },
+  { path: 'mypage/editprofile', component: EditProfileComponent },
 ];
 
 @NgModule({
