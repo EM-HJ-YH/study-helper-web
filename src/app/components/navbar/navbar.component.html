@@ -3,16 +3,17 @@
     Study Helper
   </h3>
   <nav class="my-2 my-md-0 mr-md-3">
-    <a *ngIf=true class="p-2 text-dark" routerLink="/signup" routerLinkActive="active">
+    <a *ngIf="!authService.isLoggedIn()" class="p-2 text-dark" routerLink="/signup" routerLinkActive="active">
       Sign Up
     </a>
-    <a *ngIf=true class="p-2 text-dark" routerLink="/signin" routerLinkActive="active">
+    <a *ngIf="!authService.isLoggedIn()" class="p-2 text-dark" routerLink="/signin" routerLinkActive="active">
       Login
     </a>
-    <a *ngIf=true class="p-2 text-dark" routerLink="/mypage" routerLinkActive="active">
+    <a *ngIf="authService.isLoggedIn()" class="p-2 text-dark" routerLink="/mypage" routerLinkActive="active">
       My Page
     </a>
-    <a *ngIf=true class="p-2 text-dark" (click)="onLogoutClick()" href="#">
+    <a *ngIf="authService.isLoggedIn()" class="p-2 text-dark" (click)="onLogoutClick()"
+        routerLink="/signin" routerLinkActive="active">
       Logout
     </a>
     <a class="p-2 text-muted font-weight-light" routerLink="/admin" routerLinkActive="active">

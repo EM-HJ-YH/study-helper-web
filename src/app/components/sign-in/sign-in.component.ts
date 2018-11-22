@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { User } from '../../user';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +13,8 @@ import { User } from '../../user';
 export class SignInComponent implements OnInit {
   signInForm: FormGroup;
 
-  constructor(private router: Router, fb: FormBuilder) { 
+  constructor(private router: Router, fb: FormBuilder,
+              private authService: AuthService) {
     this.signInForm = fb.group({
       'userId': ['', Validators.required],
       'userPw': ['', Validators.required],
@@ -23,7 +25,15 @@ export class SignInComponent implements OnInit {
   }
   
   onLoginSubmit(form: any): void {
-    // form.userId+form.userPw;
-    this.router.navigate(['mypage']);
+    this.authService.login(form.userId, form.userPw)
+        .subscribe(data => {
+          if(data.success && data.result.token) {
+            localStorage.setItem('token', data.result.token);
+            localStorage.setItem('currentUser', JSON.stringify(data.result));
+            this.router.navigate(['mypage']);
+          } else {
+            alert(data.message);
+          }
+        });
   }
 }

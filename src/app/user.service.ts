@@ -10,38 +10,40 @@ import { map } from 'rxjs/operators';
 export class UserService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private usersUrl = 'http://54.180.105.16:80/users';
+  private rootUrl = 'http://54.180.105.16:80';
 
   constructor(public http: Http) { }
 
   getUsers() {
+    const url= `${this.rootUrl}/users`;
     return this.http
-            .get(this.usersUrl)
+            .get(url)
             .pipe(map( res => res.json() ));
   }
 
   getUser(id: string) {
-    const url= `${this.usersUrl}/${id}`;
+    const url= `${this.rootUrl}/users/${id}`;
     return this.http
             .get(url)
             .pipe(map( res => res.json() ));
   }
 
   registerUser(user: User) {
+    const url= `${this.rootUrl}/users`;
     return this.http
-            .post(this.usersUrl, JSON.stringify(user), {headers: this.headers})
+            .post(url, JSON.stringify(user), {headers: this.headers})
             .pipe(map( res => res.json() ));
   }
 
   deleteUser(id: string) {
-    const url= `${this.usersUrl}/${id}`;
+    const url= `${this.rootUrl}/users/${id}`;
     return this.http
             .delete(url, {headers: this.headers})
             .pipe(map( () => null ));
   }
 
   updateUser(user: User) {
-    const url= `${this.usersUrl}/${user.userId}`;
+    const url= `${this.rootUrl}/users/${user.userId}`;
     return this.http
           .put(url, JSON.stringify(user), {headers: this.headers})
           .pipe(map( () => user ));

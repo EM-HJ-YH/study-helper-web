@@ -20,6 +20,7 @@ import { CafeComponent } from './components/cafe/cafe.component';
 
 import { UserService } from './user.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     HttpModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [UserService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
