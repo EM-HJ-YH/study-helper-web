@@ -35,20 +35,6 @@ export class AdminComponent implements OnInit {
         .deleteUser(id).subscribe(() => this.ngOnInit());
   }
 
-  // 유저 업데이트
-  // updateUser(user: User) {
-  //   user = {
-  //     userName: "update Test",
-  //     userId: user.userId,
-  //     userPw: "string",
-  //     major: "string",
-  //     admissionYear: 0
-  //   }
-  //   this.userService
-  //       .updateUser(user)
-  //       .subscribe(() => location.reload());
-  // }
-
   ngOnInit() {
     this.getUsers();
   }

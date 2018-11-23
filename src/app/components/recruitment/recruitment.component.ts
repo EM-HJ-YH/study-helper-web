@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recruitment',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recruitment.component.css']
 })
 export class RecruitmentComponent implements OnInit {
+  searchForm: FormGroup;
 
-  constructor() { }
+  constructor(fb: FormBuilder, private router: Router,) {
+    this.searchForm = fb.group({
+      'searchTerm': ['', Validators.required],
+      'searchText': ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
   }
 
+  onSearch(form: any) {
+
+  }
 }
