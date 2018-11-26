@@ -7,10 +7,6 @@
   </div>
 
   <div class="form-group">
-    <input class="form-control" type="password" name="pass" placeholder="변경할 패스워드 입력" [formControl]="editForm.controls['pass']">
-  </div>
-
-  <div class="form-group">
     <label for="major">전공 선택</label>
     <select class="form-control" name="major" value="{{currentUser.major}}" [formControl]="editForm.controls['major']">
       <option value="">Choose...</option>

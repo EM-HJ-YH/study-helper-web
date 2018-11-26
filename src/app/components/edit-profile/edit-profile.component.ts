@@ -19,8 +19,7 @@ export class EditProfileComponent implements OnInit {
               private authService: AuthService,
               private router: Router, fb: FormBuilder) { 
     this.editForm = fb.group({
-      'name': ['', Validators.required],
-      'pass': ['', Validators.required],
+      'name': [''],
       'major': [''],
       'grade': []
     });
@@ -29,6 +28,11 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() {
     if(localStorage.getItem('token')) {
       this.currentUser = this.authService.currentUser();
+      this.userService
+          .getUser(this.currentUser.userId)
+          .subscribe((user) => {
+            this.currentUser = user.result;
+          });
     } else {
       this.router.navigate(['signin']);
     }
@@ -37,15 +41,19 @@ export class EditProfileComponent implements OnInit {
   onSubmit(form: any): void {
     var user: User = this.currentUser;
     if(form.name != "") user.userName = form.name;
-    if(form.pass != "") user.userPw = form.pass;
     if(form.major != "") user.major = form.major;
     if(form.grade != null) user.admissionYear = form.grade;
     this.userService
         .updateUser(user)
-        .subscribe(() => {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          alert('회원 정보를 수정하였습니다.');
-          this.router.navigate(['mypage']);
+        .subscribe(data => {
+          console.log(data);
+          if(data.success) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            alert('회원 정보를 수정하였습니다.');
+            this.router.navigate(['mypage']);
+          } else {
+            alert(data.message);
+          }
         });
   }
 }

@@ -46,6 +46,6 @@ export class UserService {
     const url= `${this.rootUrl}/users/${user.userId}`;
     return this.http
           .put(url, JSON.stringify(user), {headers: this.headers})
-          .pipe(map( () => user ));
+          .pipe(map( res => res.json() ));
   }
 }
