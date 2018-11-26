@@ -1,0 +1,40 @@
+<h5 class="page-header">모집 게시판 글 작성</h5>
+<form name="postForm"
+      [formGroup]="postForm"
+      (ngSubmit)="postWrite(postForm.value)">
+  <div class="border rounded mb-2">
+    <div class="container mt-3 mb-3">
+        <div class="form-row mb-2">
+          <div class="col-5">
+            <input type="text" class="form-control" name="title" placeholder="제목 입력" [formControl]="postForm.controls['title']">
+          </div>
+          <div class="col-3">
+            <select name="maxNum" class="form-control" [formControl]="postForm.controls['maxNum']">
+              <option value="" selected disabled hidden>모집 인원</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          <div class="col-4">
+            <input type="file" class="form-control" name="file" [formControl]="postForm.controls['file']">
+          </div>
+        </div>
+        <div>
+          <textarea class="form-control" name="contents" rows="10" placeholder="내용을 입력하세요." [formControl]="postForm.controls['contents']"></textarea>
+        </div>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-md-1">
+      <button class="btn btn-outline-dark btn-sm" type="submit">글 작성</button>
+    </div>
+  </div>
+</form>

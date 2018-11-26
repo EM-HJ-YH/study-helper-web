@@ -3,6 +3,12 @@
 <!-- 게시물 테이블 -->
 <div class="border rounded mt-2 mb-2">
   <table class="table table-hover table-condensed mb-auto">
+    <colgroup>
+      <col style="width: 5%;"/>
+      <col style="width: 40%;"/>
+      <col style="width: 25%;"/>
+      <col style="width: 20%;"/>
+    </colgroup>
     <thead>
       <tr>
         <th>No.</th>
@@ -12,15 +18,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dummy of ' '.repeat(5).split(''), let x = index">
-        <td>{{x}}</td>
+      <tr *ngFor="let post of allPost">
+        <td>{{post.postNo}}</td>
         <td>
-          <a class="text-dark" routerLink="/recruitment" routerLinkActive="active">
-            팀플 구합니다. {{x}}
+          <a class="text-dark" (click)="onSelect(post)" href="/recruitment#detail">
+            {{post.title}}
           </a>
         </td>
-        <td class="text-right">아무개{{x}}</td>
-        <td class="text-right">2018.11.24 00:0{{x}}</td>
+        <td class="text-right">{{post.writer}}</td>
+        <td class="text-right">{{post.date | date: 'yyyy-MM-dd HH:mm'}}</td>
       </tr>
     </tbody>
   </table>
@@ -28,7 +34,7 @@
 
 <div class="row">
   <div class="col-md-3 mb-1">
-    <button class="btn btn-outline-dark btn-sm" type="button">글 작성</button>
+    <button class="btn btn-outline-dark btn-sm" (click)="onWrite()">글 작성</button>
   </div>
 
   <!-- 검색 폼 -->
@@ -39,7 +45,7 @@
       <div class="input-group input-group-sm">
         <div class="input-group-prepend">
           <select class="btn btn-outline-dark" name="searchTerm" [formControl]="searchForm.controls['searchTerm']">
-            <option value="">검색 조건</option>
+            <option value="" selected disabled hidden>검색 조건</option>
             <option value="title">제목</option>
             <option value="writer">작성자</option>
           </select>
@@ -76,4 +82,7 @@
   </div>
 </div>
 
-
+<div *ngIf="selectedPost" id="detail">
+  <a name="detail" id="detail"></a>
+  <app-post-detail [post]="selectedPost" [isWriter]="isWriter"></app-post-detail>
+</div>

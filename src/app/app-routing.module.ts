@@ -12,6 +12,8 @@ import { NoticeComponent } from './components/notice/notice.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CafeComponent } from './components/cafe/cafe.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { PostWriteComponent } from './components/post-write/post-write.component';
+import { PostEditComponent } from './components/post-edit/post-edit.component';
 
 const routes: Routes = [
   { path: 'signup',  component: SignUpComponent },
@@ -25,6 +27,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'cafe', component: CafeComponent },
   { path: 'mypage/editprofile', component: EditProfileComponent },
+  { path: 'recruitment/postwrite', component: PostWriteComponent },
+  { path: 'recruitment/postedit', component: PostEditComponent },
 ];
 
 @NgModule({

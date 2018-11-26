@@ -22,6 +22,9 @@ import { UserService } from './user.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthService } from './auth.service';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { PostWriteComponent } from './components/post-write/post-write.component';
+import { PostEditComponent } from './components/post-edit/post-edit.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     NoticeComponent,
     CafeComponent,
     NavbarComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    PostDetailComponent,
+    PostWriteComponent,
+    PostEditComponent
   ],
   imports: [
     BrowserModule,
