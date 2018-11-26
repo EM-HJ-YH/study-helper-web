@@ -12,16 +12,6 @@ export class AdminComponent implements OnInit {
   
   constructor(private userService: UserService) { }
 
-    // 유저 한 명 찾기
-  // onSubmit(form: any): void {
-  //   this.userService
-  //       .getUser(form.email)
-  //       .subscribe((user)=>{
-  //         console.log(user);
-  //         this.searchedUser = user;
-  //       });
-  // }
-
   getUsers() {
     this.userService
         .getUsers()

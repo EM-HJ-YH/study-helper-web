@@ -17,7 +17,7 @@
   <div class="form-group">
     <label for="major">전공 선택</label>
     <select class="form-control" name="major" [formControl]="signUpForm.controls['major']">
-      <option value="">Choose...</option>
+      <option value="" selected disabled hidden>Choose...</option>
       <optgroup label="인문대학">
         <option value='한국어문학부'>한국어문학부</option>
         <option value='영어영문학부'>영어영문학부</option>
