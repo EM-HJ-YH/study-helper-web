@@ -19,14 +19,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let post of allPost">
-        <td>{{post.postNo}}</td>
+        <td>{{post.boardIndex}}</td>
         <td>
           <a class="text-dark" (click)="onSelect(post)" href="/recruitment#detail">
-            {{post.title}}
+            {{post.boardTitle}}
           </a>
         </td>
-        <td class="text-right">{{post.writer}}</td>
-        <td class="text-right">{{post.date | date: 'yyyy-MM-dd HH:mm'}}</td>
+        <td class="text-right">{{post.userId}}</td>
+        <td class="text-right">{{post.boardDate | date: 'yyyy-MM-dd HH:mm'}}</td>
       </tr>
     </tbody>
   </table>
@@ -46,8 +46,8 @@
         <div class="input-group-prepend">
           <select class="btn btn-outline-dark" name="searchTerm" [formControl]="searchForm.controls['searchTerm']">
             <option value="" selected disabled hidden>검색 조건</option>
-            <option value="title">제목</option>
-            <option value="writer">작성자</option>
+            <option value="boardTitle">제목</option>
+            <option value="userId">작성자</option>
           </select>
         </div>
         <input type="text" class="form-control" name="searchText" [formControl]="searchForm.controls['searchText']">

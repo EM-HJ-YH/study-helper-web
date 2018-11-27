@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Post, POSTS } from '../../post';
+import { Post } from '../../post';
 import { User } from 'src/app/user';
 import { AuthService } from 'src/app/auth.service';
 
@@ -24,7 +24,6 @@ export class RecruitmentComponent implements OnInit {
       'searchTerm': [''],
       'searchText': ['']
     });
-    this.allPost = POSTS;
     this.isWriter = false;
   }
 

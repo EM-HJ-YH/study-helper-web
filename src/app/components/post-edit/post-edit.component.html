@@ -7,10 +7,10 @@
     <div class="container mt-3 mb-3">
         <div class="form-row mb-2">
           <div class="col-5">
-            <input type="text" value="{{post.title}}" class="form-control" name="title" placeholder="제목 입력" [formControl]="postEditForm.controls['title']">
+            <input type="text" value="{{post.boardTitle}}" class="form-control" name="title" placeholder="제목 입력" [formControl]="postEditForm.controls['title']">
           </div>
           <div class="col-3">
-            <select name="maxNum" value="{{post.maxNum}}" class="form-control" [formControl]="postEditForm.controls['maxNum']">
+            <select name="maxNum" value="{{post.memberCount}}" class="form-control" [formControl]="postEditForm.controls['maxNum']">
               <option value="" selected disabled hidden>모집 인원</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div>
-          <textarea class="form-control" value="{{post.contents}}" name="contents" rows="10" placeholder="내용을 입력하세요." [formControl]="postEditForm.controls['contents']"></textarea>
+          <textarea class="form-control" value="{{post.boardContent}}" name="contents" rows="10" placeholder="내용을 입력하세요." [formControl]="postEditForm.controls['contents']"></textarea>
         </div>
     </div>
   </div>

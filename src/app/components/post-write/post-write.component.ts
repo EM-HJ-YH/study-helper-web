@@ -37,14 +37,15 @@ export class PostWriteComponent implements OnInit {
 
   postWrite(form: any) {
     this.post = {
-      postNo: 0,
-      title: form.title,
-      writer: this.currentUser.userId,
-      date: new Date().toString(),
-      contents: form.contents,
-      maxNum: Number(form.maxNum),
+      boardIndex: 0,
+      boardTitle: form.title,
+      userId: this.currentUser.userId,
+      boardDate: new Date().toString(),
+      boardContent: form.contents,
+      memberCount: Number(form.maxNum),
+      isRecruiting: true,
+      members: [this.currentUser.userId],
     }
     if(form.file) this.post.file = form.file;
-    alert("제목: "+this.post.title+"\n모집 인원: "+this.post.maxNum+"\n내용: "+this.post.contents);
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Post, POSTS } from '../../post';
+import { Post } from '../../post';
 import { AuthService } from 'src/app/auth.service';
 import { User } from 'src/app/user';
 
@@ -12,7 +12,16 @@ import { User } from 'src/app/user';
   styleUrls: ['./post-edit.component.css']
 })
 export class PostEditComponent implements OnInit {
-  post: Post;
+  post: Post = {
+    boardIndex: 0,
+    boardTitle: "",
+    userId: "",
+    boardDate: "",
+    boardContent: "",
+    memberCount: 0,
+    members: [""],
+    isRecruiting: null,
+  };
   postEditForm: FormGroup;
   currentUser: User;
 
@@ -24,7 +33,6 @@ export class PostEditComponent implements OnInit {
       'file': [],
       'contents': [''],
     });
-    this.post = POSTS[0];
   }
 
   ngOnInit() {
@@ -36,10 +44,9 @@ export class PostEditComponent implements OnInit {
   }
 
   postEdit(form: any) {
-    if(form.title != "") this.post.title = form.title;
-    if(form.maxNum != "") this.post.maxNum = Number(form.maxNum);
+    if(form.title != "") this.post.boardTitle = form.title;
+    if(form.maxNum != "") this.post.memberCount = Number(form.maxNum);
     if(form.file != "") this.post.file = form.file;
-    if(form.contents != "") this.post.contents = form.contents;
-    alert("제목: "+this.post.title+"\n모집 인원: "+this.post.maxNum+"\n내용: "+this.post.contents);
+    if(form.contents != "") this.post.boardContent = form.contents;
   }
 }

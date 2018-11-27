@@ -14,18 +14,26 @@
       <thead>
         <tr>
           <th>제목</th>
-          <td>{{post.title}}</td>
+          <td>{{post.boardTitle}}</td>
           <th>작성자</th>
-          <td>{{post.writer}}</td>
+          <td>{{post.userId}}</td>
           <th>작성 날짜</th>
-          <td>{{post.date | date: 'yyyy-MM-dd HH:mm'}}</td>
+          <td>{{post.boardDate | date: 'yyyy-MM-dd HH:mm'}}</td>
           <th>모집 인원</th>
-          <td>{{post.maxNum}}</td>
+          <td>{{post.memberCount}}</td>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td colspan="8">{{post.contents}}</td>
+          <td colspan="8" style="white-space: pre-wrap">{{post.boardContent}}</td>
+        </tr>
+        <tr>
+          <th colspan="1">신청자</th>
+          <td colspan="7">
+            <span *ngFor="let member of post.members, let x = index" class="mr-2">
+            {{x+1}}. {{member}}
+            </span>
+          </td>
         </tr>
       </tbody>
     </table>
