@@ -29,7 +29,7 @@ export class RecruitmentComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('token')) {
+    if(this.authService.isLoggedIn()) {
       this.currentUser = this.authService.currentUser();
     }
   }
@@ -48,7 +48,7 @@ export class RecruitmentComponent implements OnInit {
   }
 
   onWrite() {
-    if(localStorage.getItem('token')) {
+    if(this.authService.isLoggedIn()) {
       this.router.navigate(['recruitment/postwrite']);
     } else {
       alert('글 작성은 로그인 후 할 수 있습니다.');

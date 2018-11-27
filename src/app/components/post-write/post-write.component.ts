@@ -28,7 +28,7 @@ export class PostWriteComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('token')) {
+    if(this.authService.isLoggedIn()) {
       this.currentUser = this.authService.currentUser();
     } else {
       this.router.navigate(['signin']);

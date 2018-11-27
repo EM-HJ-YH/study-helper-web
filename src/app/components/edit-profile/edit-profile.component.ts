@@ -26,7 +26,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('token')) {
+    if(this.authService.isLoggedIn()) {
       this.currentUser = this.authService.currentUser();
       this.userService
           .getUser(this.currentUser.userId)
@@ -46,7 +46,6 @@ export class EditProfileComponent implements OnInit {
     this.userService
         .updateUser(user)
         .subscribe(data => {
-          console.log(data);
           if(data.success) {
             localStorage.setItem('currentUser', JSON.stringify(user));
             alert('회원 정보를 수정하였습니다.');

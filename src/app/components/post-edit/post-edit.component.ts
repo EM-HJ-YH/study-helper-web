@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Post, POSTS } from '../../post';
+import { AuthService } from 'src/app/auth.service';
+import { User } from 'src/app/user';
 
 @Component({
   selector: 'app-post-edit',
@@ -12,8 +14,10 @@ import { Post, POSTS } from '../../post';
 export class PostEditComponent implements OnInit {
   post: Post;
   postEditForm: FormGroup;
+  currentUser: User;
 
-  constructor(fb: FormBuilder, private router: Router,) {
+  constructor(fb: FormBuilder, private router: Router,
+              private authService: AuthService,) {
     this.postEditForm = fb.group({
       'title': [''],
       'maxNum': [''],
@@ -24,8 +28,8 @@ export class PostEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('token')) {
-      // this.currentUser = this.authService.currentUser();
+    if(this.authService.isLoggedIn()) {
+      this.currentUser = this.authService.currentUser();
     } else {
       this.router.navigate(['signin']);
     }

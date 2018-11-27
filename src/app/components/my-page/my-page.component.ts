@@ -16,7 +16,7 @@ export class MyPageComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    if(localStorage.getItem('token')) {
+    if(this.authService.isLoggedIn()) {
       this.currentUser = this.authService.currentUser();
     } else {
       this.router.navigate(['signin']);
