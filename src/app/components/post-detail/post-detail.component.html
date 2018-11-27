@@ -1,3 +1,4 @@
+<h5 class="page-header">모집 게시판 게시물 상세</h5>
 <div>
   <div class="border rounded mb-2">
     <table class="table table-bordered mb-auto">
@@ -42,4 +43,5 @@
   <button *ngIf="isWriter" class="btn btn-outline-dark btn-sm mr-2 mb-2" type="button" (click)="postEdit()">글 수정</button>
   <button *ngIf="isWriter" class="btn btn-outline-dark btn-sm mr-2 mb-2" type="button">모집 마감</button>
   <button *ngIf="!isWriter" class="btn btn-outline-dark btn-sm mb-2" type="button">팀 신청</button>
+  <button *ngIf="isWriter" class="btn btn-outline-dark btn-sm mr-2 mb-2" type="button" (click)="postDelete()">글 삭제</button>
 </div>

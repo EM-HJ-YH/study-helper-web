@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Post } from '../../post';
 import { User } from 'src/app/user';
 import { AuthService } from 'src/app/auth.service';
+import { PostService } from 'src/app/post.service';
 
 @Component({
   selector: 'app-recruitment',
@@ -13,37 +14,35 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class RecruitmentComponent implements OnInit {
   searchForm: FormGroup;
-  selectedPost: Post;
   allPost: Post[];
-  isWriter: boolean;
   currentUser: User;
 
   constructor(fb: FormBuilder, private router: Router,
-              private authService: AuthService,) {
+              private authService: AuthService,
+              private postService: PostService,) {
     this.searchForm = fb.group({
       'searchTerm': [''],
       'searchText': ['']
     });
-    this.isWriter = false;
   }
 
   ngOnInit() {
+    this.getPosts();
     if(this.authService.isLoggedIn()) {
       this.currentUser = this.authService.currentUser();
     }
   }
-
+  
+  getPosts() {
+    this.postService
+        .getPosts()
+        .subscribe((posts)=>{
+          this.allPost = posts.result;
+        });
+  }
+    
   onSearch(form: any) {
 
-  }
-
-  onSelect(post: Post) {
-    this.selectedPost = post;
-    if(this.currentUser.userId == this.selectedPost.writer) {
-      this.isWriter = true;
-    } else {
-      this.isWriter = false;
-    }
   }
 
   onWrite() {

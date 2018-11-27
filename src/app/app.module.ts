@@ -25,6 +25,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { PostWriteComponent } from './components/post-write/post-write.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
+import { PostService } from './post.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { PostEditComponent } from './components/post-edit/post-edit.component';
     HttpModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService],
+  providers: [UserService, AuthService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

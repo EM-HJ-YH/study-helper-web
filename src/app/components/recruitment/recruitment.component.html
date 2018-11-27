@@ -21,7 +21,7 @@
       <tr *ngFor="let post of allPost">
         <td>{{post.boardIndex}}</td>
         <td>
-          <a class="text-dark" (click)="onSelect(post)" href="/recruitment#detail">
+          <a class="text-dark" routerLink="/recruitment/detail/{{post.boardIndex}}" routerLinkActive="active">
             {{post.boardTitle}}
           </a>
         </td>
@@ -80,9 +80,4 @@
       </ul>
     </nav>
   </div>
-</div>
-
-<div *ngIf="selectedPost" id="detail">
-  <a name="detail" id="detail"></a>
-  <app-post-detail [post]="selectedPost" [isWriter]="isWriter"></app-post-detail>
 </div>

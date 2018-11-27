@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Post } from '../../post';
 import { AuthService } from 'src/app/auth.service';
 import { User } from 'src/app/user';
+import { PostService } from 'src/app/post.service';
 
 @Component({
   selector: 'app-post-edit',
@@ -26,7 +27,8 @@ export class PostEditComponent implements OnInit {
   currentUser: User;
 
   constructor(fb: FormBuilder, private router: Router,
-              private authService: AuthService,) {
+              private authService: AuthService,
+              private postService: PostService,) {
     this.postEditForm = fb.group({
       'title': [''],
       'maxNum': [''],
@@ -36,10 +38,19 @@ export class PostEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn()) {
+    if(this.authService.isLoggedIn() && localStorage.getItem('boardIndex')) {
       this.currentUser = this.authService.currentUser();
+      var index = Number(localStorage.getItem('boardIndex'));
+      this.postService
+          .getPost(index)
+          .subscribe((data) => {
+            if(data.success) {
+              this.post = data.result;
+            }
+          });
+      localStorage.removeItem('boardIndex');
     } else {
-      this.router.navigate(['signin']);
+      this.router.navigate(['/']);
     }
   }
 
@@ -48,5 +59,18 @@ export class PostEditComponent implements OnInit {
     if(form.maxNum != "") this.post.memberCount = Number(form.maxNum);
     if(form.file != "") this.post.file = form.file;
     if(form.contents != "") this.post.boardContent = form.contents;
+    var res = confirm("수정을 완료하시겠습니까?");
+    if(res) {
+      this.postService
+          .updatePost(this.post, this.authService.getToken())
+          .subscribe(data => {
+            if(data.success) {
+              alert("수정이 완료되었습니다.");
+              this.router.navigate(['recruitment/detail/'+data.result.boardIndex]);
+            } else {
+              alert("수정에 실패하였습니다.\n"+data.message);
+            }
+          });
+    }
   }
 }

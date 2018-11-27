@@ -14,12 +14,14 @@ import { CafeComponent } from './components/cafe/cafe.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { PostWriteComponent } from './components/post-write/post-write.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
 
 const routes: Routes = [
   { path: 'signup',  component: SignUpComponent },
   { path: 'signin', component: SignInComponent },
   { path: 'mypage', component: MyPageComponent },
   { path: 'recruitment', component: RecruitmentComponent },
+  { path: 'recruitment/detail/:index', component: PostDetailComponent },
   { path: 'grouppage', component: GroupPageComponent },
   { path: 'calendar', component: CalendarComponent },
   { path: 'chat', component: ChatComponent },
