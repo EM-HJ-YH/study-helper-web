@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { User } from '../../user';
@@ -16,12 +16,15 @@ export class SignInComponent implements OnInit {
   constructor(private router: Router, fb: FormBuilder,
               private authService: AuthService) {
     this.signInForm = fb.group({
-      'userId': ['', Validators.required],
-      'userPw': ['', Validators.required],
+      'userId': [''],
+      'userPw': [''],
     });
   }
 
   ngOnInit() {
+    if(this.authService.isLoggedIn()) {
+      this.router.navigate(['/']);
+    }
   }
   
   onLoginSubmit(form: any): void {
@@ -32,7 +35,7 @@ export class SignInComponent implements OnInit {
             localStorage.setItem('currentUser', JSON.stringify(data.result));
             this.router.navigate(['mypage']);
           } else {
-            alert(data.message);
+            alert("로그인에 실패하였습니다.\n"+data.message);
           }
         });
   }

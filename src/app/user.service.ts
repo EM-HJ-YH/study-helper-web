@@ -42,8 +42,9 @@ export class UserService {
             .pipe(map( () => null ));
   }
 
-  updateUser(user: User) {
+  updateUser(user: User, token: string) {
     const url= `${this.rootUrl}/users/${user.userId}`;
+    this.headers.append('x-access-token', token);
     return this.http
           .put(url, JSON.stringify(user), {headers: this.headers})
           .pipe(map( res => res.json() ));

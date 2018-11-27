@@ -26,6 +26,11 @@ export class AuthService {
     else return false;
   }
 
+  getToken(): string {
+    var token = localStorage.getItem('token');
+    if(token) return token;
+  }
+
   currentUser(): User {
     return JSON.parse(localStorage.getItem('currentUser')) as User;
   }

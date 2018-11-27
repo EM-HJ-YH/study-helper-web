@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Post, POSTS } from '../../post';
@@ -21,8 +21,8 @@ export class RecruitmentComponent implements OnInit {
   constructor(fb: FormBuilder, private router: Router,
               private authService: AuthService,) {
     this.searchForm = fb.group({
-      'searchTerm': ['', Validators.required],
-      'searchText': ['', Validators.required]
+      'searchTerm': [''],
+      'searchText': ['']
     });
     this.allPost = POSTS;
     this.isWriter = false;

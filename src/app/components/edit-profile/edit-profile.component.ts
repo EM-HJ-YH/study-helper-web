@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { User } from '../../user';
@@ -44,7 +44,7 @@ export class EditProfileComponent implements OnInit {
     if(form.major != "") user.major = form.major;
     if(form.grade != null) user.admissionYear = form.grade;
     this.userService
-        .updateUser(user)
+        .updateUser(user, this.authService.getToken())
         .subscribe(data => {
           if(data.success) {
             localStorage.setItem('currentUser', JSON.stringify(user));
