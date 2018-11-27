@@ -1,11 +1,12 @@
 export interface Post{
-    postNo: number,
-    title: string,
-    writer: string,
-    date: string,
-    contents: string,
-    maxNum: number,
-    applicant?: string[],
+    boardIndex: number,
+    boardTitle: string,
+    userId: string,
+    boardDate: string,
+    boardContent: string,
+    memberCount: number,
+    members: string[],
+    isRecruiting: boolean,
     file?: File,
 };
 
