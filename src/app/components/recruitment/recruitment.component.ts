@@ -16,6 +16,8 @@ export class RecruitmentComponent implements OnInit {
   searchForm: FormGroup;
   allPost: Post[];
   currentUser: User;
+  searchPost: Post[] = [];
+  searchClicked: boolean;
 
   constructor(fb: FormBuilder, private router: Router,
               private authService: AuthService,
@@ -24,6 +26,7 @@ export class RecruitmentComponent implements OnInit {
       'searchTerm': [''],
       'searchText': ['']
     });
+    this.searchClicked = false;
   }
 
   ngOnInit() {
@@ -42,7 +45,29 @@ export class RecruitmentComponent implements OnInit {
   }
     
   onSearch(form: any) {
-
+    var txt = form.searchText;
+    if(txt != "") {
+      this.searchPost = [];
+      if(form.searchTerm == "boardTitle") {
+        for (var i=0; i<this.allPost.length; i++) {
+          if(this.allPost[i].boardTitle.includes(txt)) {
+            this.searchPost.push(this.allPost[i]);
+          }
+        }
+      } else if(form.searchTerm == "userId") {
+        for (var i=0; i<this.allPost.length; i++) {
+          if(this.allPost[i].userId.includes(txt)) {
+            this.searchPost.push(this.allPost[i]);
+          }
+        }
+      }
+      if(this.searchPost[0] != null) {
+        this.searchClicked = true;
+      } else {
+        this.searchClicked = false;
+        alert("검색결과가 존재하지 않습니다.");
+      }
+    }
   }
 
   onWrite() {

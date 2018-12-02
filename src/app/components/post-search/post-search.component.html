@@ -1,0 +1,33 @@
+<h5 class="page-header">검색 결과</h5>
+
+<!-- 게시물 테이블 -->
+<div class="border rounded mt-2 mb-2">
+  <table class="table table-hover table-condensed mb-auto">
+    <colgroup>
+      <col style="width: 5%;"/>
+      <col style="width: 40%;"/>
+      <col style="width: 25%;"/>
+      <col style="width: 20%;"/>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>제목</th>
+        <th class="text-right">작성자</th>
+        <th class="text-right">작성 날짜</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of searchPost">
+        <td>{{post.boardIndex}}</td>
+        <td>
+          <a class="text-dark" routerLink="/recruitment/detail/{{post.boardIndex}}" routerLinkActive="active">
+            {{post.boardTitle}}
+          </a>
+        </td>
+        <td class="text-right">{{post.userId}}</td>
+        <td class="text-right">{{post.boardDate | date: 'yyyy-MM-dd HH:mm'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -26,6 +26,7 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 import { PostWriteComponent } from './components/post-write/post-write.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { PostService } from './post.service';
+import { PostSearchComponent } from './components/post-search/post-search.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { PostService } from './post.service';
     EditProfileComponent,
     PostDetailComponent,
     PostWriteComponent,
-    PostEditComponent
+    PostEditComponent,
+    PostSearchComponent
   ],
   imports: [
     BrowserModule,
