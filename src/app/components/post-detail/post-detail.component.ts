@@ -5,6 +5,8 @@ import { Post } from '../../post';
 import { User } from 'src/app/user';
 import { AuthService } from 'src/app/auth.service';
 import { PostService } from 'src/app/post.service';
+import { Group } from 'src/app/group';
+import { GroupService } from 'src/app/group.service';
 
 @Component({
   selector: 'app-post-detail',
@@ -28,7 +30,8 @@ export class PostDetailComponent implements OnInit {
   
   constructor(private router: Router,
               private authService: AuthService,
-              private postService: PostService,) {
+              private postService: PostService,
+              private groupService: GroupService,) {
     this.isWriter = false;
     this.isMember = false;
   }
@@ -89,6 +92,37 @@ export class PostDetailComponent implements OnInit {
     }
   }
 
+  recruitingEnd() {
+    if(this.authService.isLoggedIn() && this.isWriter) {
+      var name = prompt("**모집을 마감하시면 글을 수정할 수 없습니다.**\n생성하실 그룹 이름을 입력해 주세요.");
+      if(name == "") {
+        alert("그룹 이름을 입력해 주세요!");
+      } else if(name != "" && name != null) {
+        this.post.isRecruiting = false;
+        this.post.boardTitle = "<<마감>>";
+        this.postService
+            .updatePost(this.post, this.authService.getToken())
+            .subscribe(data => {
+              if(data.success) {
+                let group: Group = {
+                  groupIndex: 0,
+                  groupMasterId: this.currentUser.userId,
+                  groupName: name,
+                  members: this.post.members
+                };
+                this.groupService
+                    .createGroup(group, this.authService.getToken())
+                    .subscribe(data => {
+                      if(data.success) alert("그룹: "+name+"를 생성하였습니다.");
+                      else alert('그룹 생성에 실패하였습니다.\n'+data.message);
+                    });
+              } else {
+                alert("모집 마감에 실패하였습니다.\n"+data.message);
+              }
+            });
+      }
+    }
+  }
 
   memberIn() {
     if(!this.authService.isLoggedIn()) {

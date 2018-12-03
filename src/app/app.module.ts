@@ -27,6 +27,7 @@ import { PostWriteComponent } from './components/post-write/post-write.component
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { PostService } from './post.service';
 import { PostSearchComponent } from './components/post-search/post-search.component';
+import { GroupService } from './group.service';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { PostSearchComponent } from './components/post-search/post-search.compon
     HttpClientModule
   ],
   providers: [UserService, AuthService, PostService],
+  providers: [UserService, AuthService, PostService, GroupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
