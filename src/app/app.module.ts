@@ -57,7 +57,6 @@ import { GroupService } from './group.service';
     HttpModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService, PostService],
   providers: [UserService, AuthService, PostService, GroupService],
   bootstrap: [AppComponent]
 })
