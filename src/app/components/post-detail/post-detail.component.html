@@ -40,8 +40,9 @@
     </table>
   </div>
 
-  <button *ngIf="isWriter" class="btn btn-outline-dark btn-sm mr-2 mb-2" type="button" (click)="postEdit()">글 수정</button>
-  <button *ngIf="isWriter" class="btn btn-outline-dark btn-sm mr-2 mb-2" type="button">모집 마감</button>
-  <button *ngIf="!isWriter" class="btn btn-outline-dark btn-sm mb-2" type="button">팀 신청</button>
+  <button *ngIf="isWriter" [disabled]="!post.isRecruiting" class="btn btn-outline-dark btn-sm mr-2 mb-2" type="button" (click)="postEdit()">글 수정</button>
   <button *ngIf="isWriter" class="btn btn-outline-dark btn-sm mr-2 mb-2" type="button" (click)="postDelete()">글 삭제</button>
+  <button *ngIf="isWriter" [disabled]="!post.isRecruiting" class="btn btn-outline-dark btn-sm mr-2 mb-2" type="button" (click)="recruitingEnd()">모집 마감</button>
+  <button *ngIf="!isWriter && !isMember" [disabled]="!post.isRecruiting" class="btn btn-outline-dark btn-sm mb-2" type="button" (click)="memberIn()">팀 신청</button>
+  <button *ngIf="!isWriter && isMember" [disabled]="!post.isRecruiting" class="btn btn-outline-dark btn-sm mb-2" type="button" (click)="memberOut()">팀 신청 취소</button>
 </div>

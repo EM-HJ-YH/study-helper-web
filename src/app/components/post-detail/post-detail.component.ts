@@ -89,4 +89,47 @@ export class PostDetailComponent implements OnInit {
     }
   }
 
+
+  memberIn() {
+    if(!this.authService.isLoggedIn()) {
+      alert("팀 신청은 로그인 후 할 수 있습니다.")
+    } else if(!this.isWriter) {
+      var res = confirm("이 팀에 가입을 신청하시겠습니까?");
+      if(res) {
+        this.postService
+            .addMember(this.post.boardIndex, this.currentUser.userId,
+                      this.authService.getToken())
+            .subscribe(data => {
+              if(data.success) {
+                this.ngOnInit();
+                alert("가입 신청이 완료되었습니다.");
+              } else {
+                alert("가입 신청이 실패했습니다.\n"+data.message);
+              }
+            });
+      }
+    }
+  }
+
+  memberOut() {
+    if(!this.authService.isLoggedIn()) {
+      alert("팀 신청 취소는 로그인 후 할 수 있습니다.")
+    } else if(!this.isWriter && this.isMember) {
+      var res = confirm("이 팀에 가입을 취소하시겠습니까?");
+      if(res) {
+        this.postService
+            .removeMember(this.post.boardIndex, this.currentUser.userId,
+                      this.authService.getToken())
+            .subscribe(data => {
+              console.log(data);
+              if(data.success) {
+                alert("팀 신청 취소가 완료되었습니다.");
+                this.ngOnInit();
+              } else {
+                alert("팀 신청 취소가 실패했습니다.\n"+data.message);
+              }
+            });
+      }
+    }
+  }
 }
