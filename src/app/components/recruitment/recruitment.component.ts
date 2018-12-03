@@ -115,9 +115,17 @@ export class RecruitmentComponent implements OnInit {
 
   pre() {
     this.startPage -= 3;
+    this.endPage = this.startPage + this.countPage - 1;
+    if (this.endPage > this.totalPage) {
+      this.endPage = this.totalPage;
+    }
   }
 
   next() {
     this.startPage += 3;
+    this.endPage = this.startPage + this.countPage - 1;
+    if (this.endPage > this.totalPage) {
+      this.endPage = this.totalPage;
+    }
   }
 }
