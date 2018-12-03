@@ -27,6 +27,7 @@ import { PostWriteComponent } from './components/post-write/post-write.component
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { PostService } from './post.service';
 import { PostSearchComponent } from './components/post-search/post-search.component';
+import { MyGroupListComponent } from './components/my-group-list/my-group-list.component';
 import { GroupService } from './group.service';
 
 @NgModule({
@@ -47,7 +48,8 @@ import { GroupService } from './group.service';
     PostDetailComponent,
     PostWriteComponent,
     PostEditComponent,
-    PostSearchComponent
+    PostSearchComponent,
+    MyGroupListComponent
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { PostWriteComponent } from './components/post-write/post-write.component';
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { MyGroupListComponent } from './components/my-group-list/my-group-list.component';
 
 const routes: Routes = [
   { path: 'signup',  component: SignUpComponent },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'mypage', component: MyPageComponent },
   { path: 'recruitment', component: RecruitmentComponent },
   { path: 'recruitment/detail/:index', component: PostDetailComponent },
-  { path: 'grouppage', component: GroupPageComponent },
+  { path: 'mygrouplist', component: MyGroupListComponent },
+  { path: 'mygroup/:index', component: GroupPageComponent },
   { path: 'calendar', component: CalendarComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'mypage/notice', component: NoticeComponent },

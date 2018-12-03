@@ -23,4 +23,42 @@ export class GroupService {
             .pipe(map( res => res.json() ));
   }
 
+  listGroup() {
+    const url= `${this.rootUrl}/groups`;
+    return this.http
+            .get(url, {headers: this.headers})
+            .pipe(map( res => res.json() ));
+  }
+
+  listMyGroup(userId: string, token: string) {
+    const url= `${this.rootUrl}/groups/myGroup/${userId}`;
+    this.headers.append('x-access-token', token);
+    return this.http
+            .get(url, {headers: this.headers})
+            .pipe(map( res => res.json() ));
+  }
+
+  updateGroup(group: Group, token: string) {
+    const url= `${this.rootUrl}/groups/${group.groupIndex}`;
+    this.headers.append('x-access-token', token);
+    return this.http
+            .put(url, JSON.stringify(group), {headers: this.headers})
+            .pipe(map( res => res.json() ));
+  }
+
+  deleteGroup(index: number, token: string) {
+    const url= `${this.rootUrl}/groups/${index}`;
+    this.headers.append('x-access-token', token);
+    return this.http
+            .delete(url, {headers: this.headers})
+            .pipe(map( res => res.json() ));
+  }
+
+  removeMember(index: number, memberId: string, token: string) {
+    const url= `${this.rootUrl}/groups/removeMember/${index}/${memberId}`;
+    this.headers.append('x-access-token', token);
+    return this.http
+            .put(url, {headers: this.headers})
+            .pipe(map( res => res.json() ));
+  }
 }
