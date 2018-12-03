@@ -1,3 +1,39 @@
-<p>
-  group-page works!
-</p>
+<h5 class="page-header">{{currentGroupName}} 게시판</h5>
+
+<!-- 게시물 테이블 -->
+<div class="border rounded mt-2 mb-2">
+  <table class="table table-hover table-condensed mb-auto">
+    <colgroup>
+      <col style="width: 5%;"/>
+      <col style="width: 40%;"/>
+      <col style="width: 25%;"/>
+      <col style="width: 20%;"/>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>제목</th>
+        <th class="text-right">작성자</th>
+        <th class="text-right">작성 날짜</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of allGroupBoard">
+        <td>{{post.groupBoardIndex}}</td>
+        <td>
+          <a class="text-dark">
+            {{post.groupBoardTitle}}
+          </a>
+        </td>
+        <td class="text-right">{{post.groupBoardPosterId}}</td>
+        <td class="text-right">{{post.groupBoardDate | date: 'yyyy-MM-dd HH:mm'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <div class="col-md-3 mb-1">
+    <button class="btn btn-outline-dark btn-sm">글 작성</button>
+  </div>
+</div>

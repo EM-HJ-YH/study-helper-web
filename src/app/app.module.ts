@@ -29,6 +29,7 @@ import { PostService } from './post.service';
 import { PostSearchComponent } from './components/post-search/post-search.component';
 import { MyGroupListComponent } from './components/my-group-list/my-group-list.component';
 import { GroupService } from './group.service';
+import { GroupBoardService } from './group-board.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,13 @@ import { GroupService } from './group.service';
     HttpModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService, PostService, GroupService],
+  providers: [
+    UserService,
+    AuthService,
+    PostService,
+    GroupService,
+    GroupBoardService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
