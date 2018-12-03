@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let post of allPost">
+      <tr *ngFor="let post of allPost | slice:S:E">
         <td>{{post.boardIndex}}</td>
         <td>
           <a class="text-dark" routerLink="/recruitment/detail/{{post.boardIndex}}" routerLinkActive="active">
@@ -63,19 +63,28 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-end">
         <li class="page-item">
-          <a class="page-link" aria-label="Previous">
+          <button class="page-link text-dark" aria-label="Previous" [disabled]="(startPage)==1" (click)="pre()">
             <span aria-hidden="true">&laquo;</span>
             <span class="sr-only">Previous</span>
-          </a>
+          </button>
         </li>
-        <li class="page-item"><a class="page-link">1</a></li>
-        <li class="page-item"><a class="page-link">2</a></li>
-        <li class="page-item"><a class="page-link">3</a></li>
+        <!-- <li class="page-item" *ngFor="let dummy of ' '.repeat(totalPage).split(''), let x = index">
+          <button class="page-link text-dark" [disabled]="(x+1)==currentPage" (click)="page(x)">{{x+1}}</button>
+        </li> -->
         <li class="page-item">
-          <a class="page-link" aria-label="Next">
+            <button class="page-link text-dark" ng-model="startPage" [disabled]="(startPage)==currentPage" (click)="page(startPage)">{{startPage}}</button>
+        </li>
+        <li class="page-item">
+            <button class="page-link text-dark" ng-model="startPage" *ngIf="(startPage)!=endPage" [disabled]="(startPage+1)==currentPage" (click)="page(startPage+1)">{{startPage+1}}</button>
+        </li>
+        <li class="page-item">
+            <button class="page-link text-dark" ng-model="startPage" *ngIf="(endPage>=(startPage+2))" [disabled]="(startPage+2)==currentPage" (click)="page(startPage+2)">{{startPage+2}}</button>
+        </li>
+        <li class="page-item">
+          <button class="page-link text-dark" aria-label="Next" (click)="next()" [disabled]="(startPage)==endPage">
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>
-          </a>
+          </button>
         </li>
       </ul>
     </nav>

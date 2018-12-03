@@ -18,6 +18,15 @@ export class RecruitmentComponent implements OnInit {
   currentUser: User;
   searchPost: Post[] = [];
   searchClicked: boolean;
+  countList: number = 5;
+  totalPost: number = 0;
+  totalPage: number = 0;
+  countPage: number = 3;
+  currentPage: number = 1;
+  startPage: number = 1;
+  endPage: number = 3;
+  S: number = 0;
+  E: number = 4;
 
   constructor(fb: FormBuilder, private router: Router,
               private authService: AuthService,
@@ -41,6 +50,27 @@ export class RecruitmentComponent implements OnInit {
         .getPosts()
         .subscribe((posts)=>{
           this.allPost = posts.result;
+          this.totalPost = this.allPost.length;
+          this.totalPage = parseInt((this.totalPost / this.countList).toString());
+          if (this.totalPost % this.countList > 0) {
+            this.totalPage++;
+          }
+          this.startPage = ((this.currentPage-1)/this.countPage) * this.countPage + 1;
+          this.startPage = parseInt(this.startPage.toString());
+          if(this.startPage%this.countPage == 2) {
+            this.startPage--;
+          } else if(this.startPage%this.countPage == 0) {
+            this.startPage -= 2;
+          }
+          this.endPage = this.startPage + this.countPage - 1;
+          if (this.endPage > this.totalPage) {
+            this.endPage = this.totalPage;
+          }
+          this.S = (this.currentPage-1) * this.countList;
+          this.E = this.S + this.countList;
+          if(this.E>this.totalPost) {
+            this.E = this.totalPost;
+          }
         });
   }
     
@@ -76,5 +106,18 @@ export class RecruitmentComponent implements OnInit {
     } else {
       alert('글 작성은 로그인 후 할 수 있습니다.');
     }
+  }
+
+  page(x: number) {
+    this.currentPage = x;
+    this.ngOnInit();
+  }
+
+  pre() {
+    this.startPage -= 3;
+  }
+
+  next() {
+    this.startPage += 3;
   }
 }
