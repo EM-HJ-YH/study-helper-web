@@ -9,15 +9,15 @@
     <a *ngIf="!authService.isLoggedIn()" class="p-2 text-dark" routerLink="/signin" routerLinkActive="active">
       Login
     </a>
-    <a *ngIf="authService.isLoggedIn()" class="p-2 text-dark" routerLink="/mypage" routerLinkActive="active">
+    <a *ngIf="authService.isLoggedIn() && !authService.isAdmin()" class="p-2 text-dark" routerLink="/mypage" routerLinkActive="active">
       My Page
+    </a>
+    <a *ngIf="authService.isAdmin()" class="p-2 text-dark" routerLink="/admin" routerLinkActive="active">
+      Admin
     </a>
     <a *ngIf="authService.isLoggedIn()" class="p-2 text-dark" (click)="onLogoutClick()"
         routerLink="/signin" routerLinkActive="active">
       Logout
-    </a>
-    <a class="p-2 text-muted font-weight-light" routerLink="/admin" routerLinkActive="active">
-      <small>Admin</small>
     </a>
   </nav>
 </div>

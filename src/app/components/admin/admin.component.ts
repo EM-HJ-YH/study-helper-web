@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { User } from '../../user';
 import { UserService } from 'src/app/user.service';
 import { GroupService } from 'src/app/group.service';
 import { Group } from 'src/app/group';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -14,7 +17,9 @@ export class AdminComponent implements OnInit {
   groups: Group[];
   
   constructor(private userService: UserService,
-              private groupService: GroupService,) { }
+              private groupService: GroupService,
+              private authService: AuthService,
+              private router: Router) { }
 
   getUsers() {
     this.userService
@@ -42,7 +47,11 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUsers();
-    this.getGroups();
+    if(this.authService.isAdmin()) {
+      this.getUsers();
+      this.getGroups();
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 }

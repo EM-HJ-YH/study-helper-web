@@ -28,15 +28,29 @@ export class SignInComponent implements OnInit {
   }
   
   onLoginSubmit(form: any): void {
-    this.authService.login(form.userId, form.userPw)
-        .subscribe(data => {
-          if(data.success && data.result.token) {
-            localStorage.setItem('token', data.result.token);
-            localStorage.setItem('currentUser', JSON.stringify(data.result));
-            this.router.navigate(['mypage']);
-          } else {
-            alert("로그인에 실패하였습니다.\n"+data.message);
-          }
-        });
+    if(form.userId == 'admin') {
+      this.authService
+          .adminLogin(form.userId, form.userPw)
+          .subscribe(data => {
+            if(data.success && data.result.token && data.result.isAdmin) {
+              localStorage.setItem('token', data.result.token);
+              localStorage.setItem('admin', data.result.isAdmin);
+              this.router.navigate(['admin']);
+            } else {
+              alert("관리자 로그인에 실패하였습니다.\n"+data.message);
+            }
+          });
+    } else {
+      this.authService.login(form.userId, form.userPw)
+          .subscribe(data => {
+            if(data.success && data.result.token) {
+              localStorage.setItem('token', data.result.token);
+              localStorage.setItem('currentUser', JSON.stringify(data.result));
+              this.router.navigate(['mypage']);
+            } else {
+              alert("로그인에 실패하였습니다.\n"+data.message);
+            }
+          });
+    }
   }
 }

@@ -9,7 +9,6 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
   private rootUrl = 'http://54.180.105.16:80';
 
   constructor(public http: Http) { }
@@ -17,6 +16,12 @@ export class AuthService {
   login(userId: string, userPw: string) {
     const url= `${this.rootUrl}/signInUser`;
     return this.http.post(url, {userId, userPw})
+            .pipe(map(res => res.json()));
+  }
+
+  adminLogin(adminId: string, adminPw: string) {
+    const url= `${this.rootUrl}/signInAdmin`;
+    return this.http.post(url, {adminId, adminPw})
             .pipe(map(res => res.json()));
   }
 
@@ -31,12 +36,17 @@ export class AuthService {
     if(token) return token;
   }
 
+  isAdmin(): boolean {
+    if(this.isLoggedIn() && localStorage.getItem('admin')=='true')
+      return true;
+    else return false;
+  }
+  
   currentUser(): User {
     return JSON.parse(localStorage.getItem('currentUser')) as User;
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('currentUser');
+    localStorage.clear();
   }
 }
