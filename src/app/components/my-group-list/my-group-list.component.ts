@@ -76,4 +76,9 @@ export class MyGroupListComponent implements OnInit {
         });
     }
   }
+  
+  goToGroupPage(groupIndex: number, groupName: string) {
+    localStorage.setItem('groupName', groupName);
+    this.router.navigate([`mygroup/${groupIndex}`]);
+  }
 }

@@ -5,10 +5,8 @@
   <div class="col-md-4" *ngFor="let group of groups">
     <div class="card flex-md-row mb-4 shadow-sm h-md-250">
       <div class="card-body d-flex flex-column align-items-start">
-        <h3 class="mb-1">
-          <a class="text-dark" routerLink="/mygroup/{{group.groupIndex}}" routerLinkActive="active">
-            {{group.groupName}}
-          </a>
+        <h3 class="mb-1" style="cursor:pointer" onMouseover="this.style.textDecoration='underline'" onMouseout="this.style.textDecoration='none'" (click)="goToGroupPage(group.groupIndex, group.groupName)">
+          {{group.groupName}}
         </h3>
         <div class="mb-1 text-muted" *ngIf="group.groupMasterId==currentUser.userId">팀장</div>
         <div class="mb-1 text-muted" *ngIf="group.groupMasterId!=currentUser.userId">팀원</div>
