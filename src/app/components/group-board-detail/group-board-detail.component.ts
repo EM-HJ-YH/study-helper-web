@@ -58,4 +58,21 @@ export class GroupBoardDetailComponent implements OnInit {
     }
   }
 
+  async postDelete() {
+    if(this.authService.isLoggedIn() && this.isWriter) {
+      var res = confirm("게시물을 삭제하시겠습니까?");
+      if(res) {
+        const token: any = await this.authService.getToken();
+        this.groupBoardService
+            .deleteGroupBoard(this.post.groupBoardIndex, token)
+            .subscribe(data => {
+              if(data.success) {
+                this.router.navigate(['mygroup/'+this.post.groupIndex.toString()]);
+              } else {
+                alert("게시물 삭제에 실패하였습니다.\n"+data.message);
+              }
+            });
+      }
+    }
+  }
 }
