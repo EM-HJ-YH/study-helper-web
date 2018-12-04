@@ -33,6 +33,7 @@ import { GroupBoardWriteComponent } from './components/group-board-write/group-b
 import { GroupBoardDetailComponent } from './components/group-board-detail/group-board-detail.component';
 import { GroupBoardService } from './group-board.service';
 import { GroupBoardSearchComponent } from './components/group-board-search/group-board-search.component';
+import { GroupBoardEditComponent } from './components/group-board-edit/group-board-edit.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { GroupBoardSearchComponent } from './components/group-board-search/group
     GroupBoardWriteComponent,
     GroupBoardDetailComponent,
     GroupBoardSearchComponent,
+    GroupBoardEditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,27 @@
+<h5 class="page-header">{{post.groupName}}의 게시판 글 수정</h5>
+
+<form name="postEditForm"
+      [formGroup]="postEditForm"
+      (ngSubmit)="postEdit(postEditForm.value)">
+  <div class="border rounded mb-2">
+    <div class="container mt-3 mb-3">
+        <div class="form-row mb-2">
+          <div class="col-6">
+            <input type="text" value="{{post.groupBoardTitle}}" class="form-control" name="title" placeholder="제목 입력" [formControl]="postEditForm.controls['title']">
+          </div>
+          <div class="col-6">
+            <input type="file" class="form-control" name="file" [formControl]="postEditForm.controls['file']">
+          </div>
+        </div>
+        <div>
+          <textarea class="form-control" value="{{post.groupBoardContent}}" name="contents" rows="10" placeholder="내용을 입력하세요." [formControl]="postEditForm.controls['contents']"></textarea>
+        </div>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-md-1">
+      <button class="btn btn-outline-dark btn-sm" type="submit">수정</button>
+    </div>
+  </div>
+</form>

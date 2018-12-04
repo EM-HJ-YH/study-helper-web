@@ -28,5 +28,6 @@
     </table>
   </div>
 
+  <button *ngIf="isWriter" class="btn btn-outline-dark btn-sm mr-2 mb-2" type="button" (click)="postEdit()">글 수정</button>
   <button *ngIf="isWriter" class="btn btn-outline-dark btn-sm mr-2 mb-2" type="button" (click)="postDelete()">글 삭제</button>
 </div>

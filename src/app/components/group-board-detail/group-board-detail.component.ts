@@ -58,6 +58,13 @@ export class GroupBoardDetailComponent implements OnInit {
     }
   }
 
+  postEdit() {
+    if(this.isWriter) {
+      localStorage.setItem('groupBoardIndex', this.post.groupBoardIndex.toString());
+      this.router.navigate(['mygroup/postedit']);
+    }
+  }
+
   async postDelete() {
     if(this.authService.isLoggedIn() && this.isWriter) {
       var res = confirm("게시물을 삭제하시겠습니까?");
