@@ -44,6 +44,8 @@ export class GroupPageComponent implements OnInit {
     if(this.authService.isLoggedIn()) {
       this.currentUser = this.authService.currentUser();
       this.currentGroupIndex = Number(this.router.url.substring(9));
+      this.currentGroupName = localStorage.getItem('groupName');
+      localStorage.removeItem('groupName');
       this.getGroupBoards();
     } else{
       this.router.navigate(['/']);
