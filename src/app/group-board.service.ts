@@ -31,6 +31,24 @@ export class GroupBoardService {
             .pipe(map( res => res.json() ));
   }
 
+  getGroupBoardByGroup(groupIndex: number, token: string) {
+    const url= `${this.rootUrl}/groupBoards/group/${groupIndex}`;
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
+    return this.http
+            .get(url, {headers: headers})
+            .pipe(map( res => res.json() ));
+  }
+
+  getGroupBoardByIndex(boardIndex: number, token: string) {
+    const url= `${this.rootUrl}/groupBoards/${boardIndex}`;
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
+    return this.http
+            .get(url, {headers: headers})
+            .pipe(map( res => res.json() ));
+  }
+
   updateGroupBoard(board: GroupBoard, token: string) {
     const url= `${this.rootUrl}/groupBoards/${board.groupBoardIndex}`;
     const headers = new Headers({'Content-Type': 'application/json'});
