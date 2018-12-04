@@ -25,11 +25,12 @@ export class EditProfileComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    if(this.authService.isLoggedIn()) {
+  async ngOnInit() {
+    if(this.authService.isLoggedIn() && !this.authService.isAdmin()) {
       this.currentUser = this.authService.currentUser();
+      const token: any = await this.authService.getToken();
       this.userService
-          .getUser(this.currentUser.userId)
+          .getUser(this.currentUser.userId, token)
           .subscribe((user) => {
             this.currentUser = user.result;
           });
@@ -38,13 +39,14 @@ export class EditProfileComponent implements OnInit {
     }
   }
 
-  onSubmit(form: any): void {
+  async onSubmit(form: any) {
     var user: User = this.currentUser;
     if(form.name != "") user.userName = form.name;
     if(form.major != "") user.major = form.major;
     if(form.grade != null) user.admissionYear = form.grade;
+    const token: any = await this.authService.getToken();
     this.userService
-        .updateUser(user, this.authService.getToken())
+        .updateUser(user, token)
         .subscribe(data => {
           if(data.success) {
             localStorage.setItem('currentUser', JSON.stringify(user));

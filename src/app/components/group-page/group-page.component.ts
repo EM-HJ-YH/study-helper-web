@@ -50,13 +50,13 @@ export class GroupPageComponent implements OnInit {
     }
   }
 
-  getGroupBoards() {
+  async getGroupBoards() {
+    const token: any = await this.authService.getToken();
     this.groupBoardService
-        .listGroupBoard()
+        .getGroupBoardByGroup(this.currentGroupIndex, token)
         .subscribe(data => {
           if(data.success) {
             this.allGroupBoard = data.result;
-            this.currentGroupName = this.allGroupBoard[0].groupName;
             this.totalPost = this.allGroupBoard.length;
             this.totalPage = parseInt((this.totalPost / this.countList).toString());
             if (this.totalPost % this.countList > 0) {

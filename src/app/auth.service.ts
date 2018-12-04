@@ -31,8 +31,8 @@ export class AuthService {
     else return false;
   }
 
-  getToken(): string {
-    var token = localStorage.getItem('token');
+  async getToken() {
+    var token = await localStorage.getItem('token');
     if(token) return token;
   }
 

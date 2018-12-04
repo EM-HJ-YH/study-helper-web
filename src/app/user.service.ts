@@ -14,17 +14,21 @@ export class UserService {
 
   constructor(public http: Http) { }
 
-  getUsers() {
+  getUsers(token: string) {
     const url= `${this.rootUrl}/users`;
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
     return this.http
-            .get(url)
+            .get(url, {headers: headers})
             .pipe(map( res => res.json() ));
   }
 
-  getUser(id: string) {
+  getUser(id: string, token: string) {
     const url= `${this.rootUrl}/users/${id}`;
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
     return this.http
-            .get(url)
+            .get(url, {headers: headers})
             .pipe(map( res => res.json() ));
   }
 
@@ -35,18 +39,21 @@ export class UserService {
             .pipe(map( res => res.json() ));
   }
 
-  deleteUser(id: string) {
+  deleteUser(id: string, token: string) {
     const url= `${this.rootUrl}/users/${id}`;
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
     return this.http
-            .delete(url, {headers: this.headers})
-            .pipe(map( () => null ));
+            .delete(url, {headers: headers})
+            .pipe(map( res => res.json() ));
   }
 
   updateUser(user: User, token: string) {
     const url= `${this.rootUrl}/users/${user.userId}`;
-    this.headers.append('x-access-token', token);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
     return this.http
-          .put(url, JSON.stringify(user), {headers: this.headers})
+          .put(url, JSON.stringify(user), {headers: headers})
           .pipe(map( res => res.json() ));
   }
 }

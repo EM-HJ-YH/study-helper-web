@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Post } from '../../post';
@@ -54,15 +54,16 @@ export class PostEditComponent implements OnInit {
     }
   }
 
-  postEdit(form: any) {
+  async postEdit(form: any) {
     if(form.title != "") this.post.boardTitle = form.title;
     if(form.maxNum != "") this.post.memberCount = Number(form.maxNum);
     if(form.file != "") this.post.file = form.file;
     if(form.contents != "") this.post.boardContent = form.contents;
     var res = confirm("수정을 완료하시겠습니까?");
     if(res) {
+      const token: any = await this.authService.getToken();
       this.postService
-          .updatePost(this.post, this.authService.getToken())
+          .updatePost(this.post, token)
           .subscribe(data => {
             if(data.success) {
               alert("수정이 완료되었습니다.");

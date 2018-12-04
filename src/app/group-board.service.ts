@@ -9,39 +9,43 @@ import { GroupBoard } from './group';
 })
 export class GroupBoardService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
   private rootUrl = 'http://54.180.105.16:80';
 
   constructor(public http: Http) { }
 
   createGroupBoard(board: GroupBoard, token: string) {
     const url= `${this.rootUrl}/groupBoards`;
-    this.headers.append('x-access-token', token);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
     return this.http
-            .post(url, JSON.stringify(board), {headers: this.headers})
+            .post(url, JSON.stringify(board), {headers: headers})
             .pipe(map( res => res.json() ));
   }
 
-  listGroupBoard() {
+  listGroupBoard(token: string) {
     const url= `${this.rootUrl}/groupBoards`;
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
     return this.http
-            .get(url, {headers: this.headers})
+            .get(url, {headers: headers})
             .pipe(map( res => res.json() ));
   }
 
   updateGroupBoard(board: GroupBoard, token: string) {
     const url= `${this.rootUrl}/groupBoards/${board.groupBoardIndex}`;
-    this.headers.append('x-access-token', token);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
     return this.http
-            .put(url, JSON.stringify(board), {headers: this.headers})
+            .put(url, JSON.stringify(board), {headers: headers})
             .pipe(map( res => res.json() ));
   }
 
   deleteGroupBoard(index: number, token: string) {
     const url= `${this.rootUrl}/groupBoards/${index}`;
-    this.headers.append('x-access-token', token);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
     return this.http
-            .delete(url, {headers: this.headers})
+            .delete(url, {headers: headers})
             .pipe(map( res => res.json() ));
   }
 }

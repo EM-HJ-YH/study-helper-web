@@ -21,17 +21,19 @@ export class AdminComponent implements OnInit {
               private authService: AuthService,
               private router: Router) { }
 
-  getUsers() {
+  async getUsers() {
+    const token: any = await this.authService.getToken();
     this.userService
-        .getUsers()
+        .getUsers(token)
         .subscribe((users)=>{
           this.users = users.result;
         });
   }
 
-  getGroups() {
+  async getGroups() {
+    const token: any = await this.authService.getToken();
     this.groupService
-        .listGroup()
+        .listGroup(token)
         .subscribe(data => {
           if(data.success) {
             this.groups = data.result;
@@ -41,9 +43,10 @@ export class AdminComponent implements OnInit {
         });
   }
 
-  deleteUser(id: string) {
-    // this.userService
-    //     .deleteUser(id).subscribe(() => this.ngOnInit());
+  async deleteUser(id: string) {
+    const token: any = await this.authService.getToken();
+    this.userService
+        .deleteUser(id, token).subscribe(() => this.ngOnInit());
   }
 
   ngOnInit() {

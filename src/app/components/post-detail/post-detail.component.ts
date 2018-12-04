@@ -75,12 +75,13 @@ export class PostDetailComponent implements OnInit {
     }
   }
 
-  postDelete() {
+  async postDelete() {
     if(this.authService.isLoggedIn() && this.isWriter) {
       var res = confirm("게시물을 삭제하시겠습니까?");
       if(res) {
+        const token: any = await this.authService.getToken();
         this.postService
-            .deletePost(this.post.boardIndex, this.authService.getToken())
+            .deletePost(this.post.boardIndex, token)
             .subscribe(data => {
               if(data.success) {
                 this.router.navigate(['recruitment']);
@@ -92,16 +93,17 @@ export class PostDetailComponent implements OnInit {
     }
   }
 
-  recruitingEnd() {
+  async recruitingEnd() {
     if(this.authService.isLoggedIn() && this.isWriter) {
       var name = prompt("**모집을 마감하시면 글을 수정할 수 없습니다.**\n생성하실 그룹 이름을 입력해 주세요.");
       if(name == "") {
         alert("그룹 이름을 입력해 주세요!");
       } else if(name != "" && name != null) {
+        const token: any = await this.authService.getToken();
         this.post.isRecruiting = false;
         this.post.boardTitle = "<<마감>>";
         this.postService
-            .updatePost(this.post, this.authService.getToken())
+            .updatePost(this.post, token)
             .subscribe(data => {
               if(data.success) {
                 let group: Group = {
@@ -111,7 +113,7 @@ export class PostDetailComponent implements OnInit {
                   members: this.post.members
                 };
                 this.groupService
-                    .createGroup(group, this.authService.getToken())
+                    .createGroup(group, token)
                     .subscribe(data => {
                       if(data.success) alert("그룹: "+name+"를 생성하였습니다.");
                       else alert('그룹 생성에 실패하였습니다.\n'+data.message);
@@ -124,15 +126,15 @@ export class PostDetailComponent implements OnInit {
     }
   }
 
-  memberIn() {
+  async memberIn() {
     if(!this.authService.isLoggedIn()) {
       alert("팀 신청은 로그인 후 할 수 있습니다.")
     } else if(!this.isWriter) {
       var res = confirm("이 팀에 가입을 신청하시겠습니까?");
       if(res) {
+        const token: any = await this.authService.getToken();
         this.postService
-            .addMember(this.post.boardIndex, this.currentUser.userId,
-                      this.authService.getToken())
+            .addMember(this.post.boardIndex, this.currentUser.userId, token)
             .subscribe(data => {
               if(data.success) {
                 this.ngOnInit();
@@ -145,17 +147,16 @@ export class PostDetailComponent implements OnInit {
     }
   }
 
-  memberOut() {
+  async memberOut() {
     if(!this.authService.isLoggedIn()) {
       alert("팀 신청 취소는 로그인 후 할 수 있습니다.")
     } else if(!this.isWriter && this.isMember) {
       var res = confirm("이 팀에 가입을 취소하시겠습니까?");
       if(res) {
+        const token: any = await this.authService.getToken();
         this.postService
-            .removeMember(this.post.boardIndex, this.currentUser.userId,
-                      this.authService.getToken())
+            .removeMember(this.post.boardIndex, this.currentUser.userId, token)
             .subscribe(data => {
-              console.log(data);
               if(data.success) {
                 alert("팀 신청 취소가 완료되었습니다.");
                 this.ngOnInit();

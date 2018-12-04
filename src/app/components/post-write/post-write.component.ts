@@ -37,7 +37,7 @@ export class PostWriteComponent implements OnInit {
     }
   }
 
-  postWrite(form: any) {
+  async postWrite(form: any) {
     if(form.title=="") {alert('제목을 입력해주세요.'); return;}
     else if(form.maxNum=="") {alert('모집 인원을 선택해주세요.'); return;}
     else if(form.contents=="") {alert('내용을 입력해주세요.'); return;}
@@ -54,8 +54,9 @@ export class PostWriteComponent implements OnInit {
     if(form.file) this.post.file = form.file;
     var res = confirm("작성을 완료하시겠습니까?");
     if(res) {
+      const token: any = await this.authService.getToken();
       this.postService
-          .registerPost(this.post, this.authService.getToken())
+          .registerPost(this.post, token)
           .subscribe(data => {
             if(data.success) {
               alert('모집글을 등록하였습니다.');

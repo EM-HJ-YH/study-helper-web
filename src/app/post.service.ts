@@ -9,7 +9,6 @@ import { Post } from './post';
 })
 export class PostService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
   private rootUrl = 'http://54.180.105.16:80';
 
   constructor(public http: Http) { }
@@ -30,41 +29,49 @@ export class PostService {
 
   registerPost(post: Post, token: string) {
     const url= `${this.rootUrl}/boards`;
-    this.headers.append('x-access-token', token);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
     return this.http
-            .post(url, JSON.stringify(post), {headers: this.headers})
+            .post(url, JSON.stringify(post), {headers: headers})
             .pipe(map( res => res.json() ));
   }
 
   deletePost(index: number, token: string) {
     const url= `${this.rootUrl}/boards/${index}`;
-    this.headers.append('x-access-token', token);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
     return this.http
-            .delete(url, {headers: this.headers})
+            .delete(url, {headers: headers})
             .pipe(map( res => res.json() ));
   }
 
   updatePost(post: Post, token: string) {
     const url= `${this.rootUrl}/boards/${post.boardIndex}`;
-    this.headers.append('x-access-token', token);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
     return this.http
-          .put(url, JSON.stringify(post), {headers: this.headers})
+          .put(url, JSON.stringify(post), {headers: headers})
           .pipe(map( res => res.json() ));
   }
 
   addMember(index: number, memberId: string, token: string) {
     const url=`${this.rootUrl}/boards/addMember/${index}/${memberId}`;
-    this.headers.append('x-access-token', token);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
+    let temp: any = {dummy: 10};
     return this.http
-                .put(url, {headers: this.headers})
+                .put(url, JSON.stringify(temp), {headers: headers})
                 .pipe(map( res => res.json() ));
   }
 
+
   removeMember(index: number, memberId: string, token: string) {
     const url=`${this.rootUrl}/boards/removeMember/${index}/${memberId}`;
-    this.headers.append('x-access-token', token);
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
+    let temp: any = {dummy: 10};
     return this.http
-                .put(url, {headers: this.headers})
+                .put(url, JSON.stringify(temp), {headers: headers})
                 .pipe(map( res => res.json() ));
   }
 }

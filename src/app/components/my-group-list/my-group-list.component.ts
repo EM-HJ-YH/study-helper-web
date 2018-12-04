@@ -30,9 +30,10 @@ export class MyGroupListComponent implements OnInit {
     }
   }
 
-  getGroups() {
+  async getGroups() {
+    const token: any = await this.authService.getToken();
     this.groupService
-        .listMyGroup(this.currentUser.userId, this.authService.getToken())
+        .listMyGroup(this.currentUser.userId, token)
         .subscribe(data => {
           if(data.success) {
             this.groups = data.result;
@@ -42,11 +43,12 @@ export class MyGroupListComponent implements OnInit {
         });
   }
 
-  deleteGroup(index: number) {
+  async deleteGroup(index: number) {
+    const token: any = await this.authService.getToken();
     var res = confirm("그룹을 삭제하시겠습니까?");
     if(res) {
       this.groupService
-        .deleteGroup(index, this.authService.getToken())
+        .deleteGroup(index, token)
         .subscribe(data => {
           if(data.success) {
             alert("그룹을 삭제하였습니다.");
@@ -58,11 +60,12 @@ export class MyGroupListComponent implements OnInit {
     }
   }
 
-  memberOut(index: number) {
+  async memberOut(index: number) {
+    const token: any = await this.authService.getToken();
     var res = confirm("이 그룹에서 탈퇴하시겠습니까?");
     if(res) {
       this.groupService
-        .removeMember(index, this.currentUser.userId, this.authService.getToken())
+        .removeMember(index, this.currentUser.userId, token)
         .subscribe(data => {
           if(data.success) {
             alert("그룹에서 탈퇴하였습니다.");
