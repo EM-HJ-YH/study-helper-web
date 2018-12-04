@@ -37,8 +37,8 @@ export class GroupBoardService {
             .pipe(map( res => res.json() ));
   }
 
-  deleteGroupBoard(board: GroupBoard, token: string) {
-    const url= `${this.rootUrl}/groupBoards/${board.groupBoardIndex}`;
+  deleteGroupBoard(index: number, token: string) {
+    const url= `${this.rootUrl}/groupBoards/${index}`;
     this.headers.append('x-access-token', token);
     return this.http
             .delete(url, {headers: this.headers})
