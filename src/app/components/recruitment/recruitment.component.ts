@@ -78,7 +78,10 @@ export class RecruitmentComponent implements OnInit {
     var txt = form.searchText;
     if(txt != "") {
       this.searchPost = [];
-      if(form.searchTerm == "boardTitle") {
+      if(form.searchTerm == "") {
+        alert('검색 조건을 선택하세요.');
+        return;
+      } else if(form.searchTerm == "boardTitle") {
         for (var i=0; i<this.allPost.length; i++) {
           if(this.allPost[i].boardTitle.includes(txt)) {
             this.searchPost.push(this.allPost[i]);
