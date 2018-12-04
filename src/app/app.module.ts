@@ -30,6 +30,7 @@ import { PostSearchComponent } from './components/post-search/post-search.compon
 import { MyGroupListComponent } from './components/my-group-list/my-group-list.component';
 import { GroupService } from './group.service';
 import { GroupBoardService } from './group-board.service';
+import { GroupBoardSearchComponent } from './components/group-board-search/group-board-search.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { GroupBoardService } from './group-board.service';
     PostWriteComponent,
     PostEditComponent,
     PostSearchComponent,
-    MyGroupListComponent
+    MyGroupListComponent,
+    GroupBoardSearchComponent,
   ],
   imports: [
     BrowserModule,
