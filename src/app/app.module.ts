@@ -29,6 +29,7 @@ import { PostService } from './post.service';
 import { PostSearchComponent } from './components/post-search/post-search.component';
 import { MyGroupListComponent } from './components/my-group-list/my-group-list.component';
 import { GroupService } from './group.service';
+import { GroupBoardWriteComponent } from './components/group-board-write/group-board-write.component';
 import { GroupBoardService } from './group-board.service';
 import { GroupBoardSearchComponent } from './components/group-board-search/group-board-search.component';
 
@@ -52,6 +53,7 @@ import { GroupBoardSearchComponent } from './components/group-board-search/group
     PostEditComponent,
     PostSearchComponent,
     MyGroupListComponent,
+    GroupBoardWriteComponent,
     GroupBoardSearchComponent,
   ],
   imports: [

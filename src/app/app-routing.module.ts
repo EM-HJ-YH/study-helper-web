@@ -16,6 +16,7 @@ import { PostWriteComponent } from './components/post-write/post-write.component
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { MyGroupListComponent } from './components/my-group-list/my-group-list.component';
+import { GroupBoardWriteComponent } from './components/group-board-write/group-board-write.component';
 
 const routes: Routes = [
   { path: 'signup',  component: SignUpComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'recruitment/detail/:index', component: PostDetailComponent },
   { path: 'mygrouplist', component: MyGroupListComponent },
   { path: 'mygroup/:index', component: GroupPageComponent },
+  { path: 'mygroup/groupboardwrite/:groupIndex', component: GroupBoardWriteComponent},
   { path: 'calendar', component: CalendarComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'mypage/notice', component: NoticeComponent },

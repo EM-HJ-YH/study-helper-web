@@ -85,6 +85,15 @@ export class GroupPageComponent implements OnInit {
         })
   }
 
+  onWrite() {
+    if(this.authService.isLoggedIn()) {
+      localStorage.setItem('groupName', this.currentGroupName);
+      this.router.navigate([`mygroup/groupboardwrite/${this.currentGroupIndex}`]);
+    } else {
+      alert('글 작성은 로그인 후 할 수 있습니다.');
+    }
+  }
+
   onSearch(form: any) {
     var txt = form.searchText;
     if(txt != "") {
