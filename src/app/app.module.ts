@@ -34,6 +34,7 @@ import { GroupBoardDetailComponent } from './components/group-board-detail/group
 import { GroupBoardService } from './group-board.service';
 import { GroupBoardSearchComponent } from './components/group-board-search/group-board-search.component';
 import { GroupBoardEditComponent } from './components/group-board-edit/group-board-edit.component';
+import { ScheduleService } from './schedule.service';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { GroupBoardEditComponent } from './components/group-board-edit/group-boa
     PostService,
     GroupService,
     GroupBoardService,
+    ScheduleService,
   ],
   bootstrap: [AppComponent]
 })
