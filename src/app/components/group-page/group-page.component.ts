@@ -41,11 +41,10 @@ export class GroupPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn()) {
+    if(this.authService.isLoggedIn() && localStorage.getItem('groupName')) {
       this.currentUser = this.authService.currentUser();
-      this.currentGroupIndex = Number(this.router.url.substring(9));
+      this.currentGroupIndex = Number(localStorage.getItem('groupIndex'));
       this.currentGroupName = localStorage.getItem('groupName');
-      localStorage.removeItem('groupName');
       this.getGroupBoards();
     } else{
       this.router.navigate(['/']);
@@ -83,15 +82,6 @@ export class GroupPageComponent implements OnInit {
           }
           else console.log(data.message);
         })
-  }
-
-  onWrite() {
-    if(this.authService.isLoggedIn()) {
-      localStorage.setItem('groupName', this.currentGroupName);
-      this.router.navigate([`mygroup/groupboardwrite/${this.currentGroupIndex}`]);
-    } else {
-      alert('글 작성은 로그인 후 할 수 있습니다.');
-    }
   }
 
   onSearch(form: any) {

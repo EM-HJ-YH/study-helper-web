@@ -46,13 +46,12 @@ export class GroupBoardEditComponent implements OnInit {
 
   async getPost() {
     var index = Number(localStorage.getItem('groupBoardIndex'));
-    localStorage.removeItem('groupBoardIndex');
     const token: any = await this.authService.getToken();
     this.groupBoardService
         .getGroupBoardByIndex(index, token)
         .subscribe(data => {
           if(data.success) {
-            this.post = data.result[0];
+            this.post = data.result;
           } else console.log(data.message);
         });
   }

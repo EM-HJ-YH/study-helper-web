@@ -44,7 +44,7 @@ export class GroupBoardDetailComponent implements OnInit {
         .getGroupBoardByIndex(index, token)
         .subscribe(data => {
           if(data.success) {
-            this.post = data.result[0];
+            this.post = data.result;
             this.check();
           } else console.log(data.message);
         });
@@ -74,7 +74,7 @@ export class GroupBoardDetailComponent implements OnInit {
             .deleteGroupBoard(this.post.groupBoardIndex, token)
             .subscribe(data => {
               if(data.success) {
-                this.router.navigate(['mygroup/'+this.post.groupIndex.toString()]);
+                this.router.navigate(['mygroup']);
               } else {
                 alert("게시물 삭제에 실패하였습니다.\n"+data.message);
               }

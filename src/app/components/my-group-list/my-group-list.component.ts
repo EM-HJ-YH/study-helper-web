@@ -13,8 +13,6 @@ import { GroupService } from 'src/app/group.service';
 })
 export class MyGroupListComponent implements OnInit {
   groups: Group[];
-  groupName: string;
-  groupIndex: number;
   currentUser: User;
 
   constructor(private authService: AuthService,
@@ -79,6 +77,7 @@ export class MyGroupListComponent implements OnInit {
   
   goToGroupPage(groupIndex: number, groupName: string) {
     localStorage.setItem('groupName', groupName);
-    this.router.navigate([`mygroup/${groupIndex}`]);
+    localStorage.setItem('groupIndex', groupIndex.toString());
+    this.router.navigate(['mygroup']);
   }
 }

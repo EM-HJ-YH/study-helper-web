@@ -21,7 +21,7 @@
       <tr *ngFor="let post of searchPost">
         <td>{{post.groupBoardIndex}}</td>
         <td>
-          <a class="text-dark">
+          <a class="text-dark"  routerLink="/mygroup/detail/{{post.groupBoardIndex}}" routerLinkActive="active">
             {{post.groupBoardTitle}}
           </a>
         </td>

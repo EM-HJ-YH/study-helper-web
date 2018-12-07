@@ -34,8 +34,7 @@ export class GroupBoardWriteComponent implements OnInit {
     if(this.authService.isLoggedIn() && localStorage.getItem('groupName')) {
       this.currentUser = this.authService.currentUser();
       this.currentGroupName = localStorage.getItem('groupName');
-      this.currentGroupIndex = Number(this.router.url.substring(25));
-      localStorage.removeItem('groupName');
+      this.currentGroupIndex = Number(localStorage.getItem('groupIndex'));
     } else {
       this.router.navigate(['/']);
     }
