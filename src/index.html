@@ -11,8 +11,27 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script>
+    function myUnload() {
+      localStorage.setItem('myUnloadFlag', new Date().getTime());
+    }
+
+    function myLoad() {
+      if(localStorage.getItem('myUnloadFlag')) {
+        var t0 = Number(localStorage.getItem('myUnloadFlag'));
+        if(isNaN(t0)) t0 = 0;
+        var t1 = new Date().getTime();
+        var duration = t1-t0;
+        if(duration<5*1000) {
+          //새로고침 혹은 url 이동
+        } else {
+          localStorage.clear(); //브라우저 닫힘
+        }
+      }
+    }
+  </script>
 </head>
-<body>
+<body onbeforeunload="myUnload()" onload="myLoad()">
   <app-root></app-root>
 </body>
 </html>
