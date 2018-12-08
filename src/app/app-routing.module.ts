@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'mygroup/groupboardwrite', component: GroupBoardWriteComponent},
   { path: 'mygroup/detail/:groupBoardIndex', component: GroupBoardDetailComponent },
   { path: 'mygroup/postedit', component: GroupBoardEditComponent },
-  { path: 'calendar', component: CalendarComponent },
+  { path: 'schedule', component: CalendarComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'mypage/notice', component: NoticeComponent },
   { path: 'admin', component: AdminComponent },
