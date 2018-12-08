@@ -35,6 +35,8 @@ import { GroupBoardService } from './group-board.service';
 import { GroupBoardSearchComponent } from './components/group-board-search/group-board-search.component';
 import { GroupBoardEditComponent } from './components/group-board-edit/group-board-edit.component';
 import { ScheduleService } from './schedule.service';
+import { ScheduleWriteComponent } from './components/calendar/schedule-write/schedule-write.component';
+import { ScheduleYmComponent } from './components/calendar/schedule-ym/schedule-ym.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { ScheduleService } from './schedule.service';
     GroupBoardWriteComponent,
     GroupBoardDetailComponent,
     GroupBoardSearchComponent,
-    GroupBoardEditComponent
+    GroupBoardEditComponent,
+    ScheduleWriteComponent,
+    ScheduleYmComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,41 @@
+<p *ngIf="allSchedule[0]==null">{{year}}.{{month}} 일정이 존재하지 않습니다.</p>
+<table class="table table-sm table-bordered table-responsive-sm" style="width: 80%;">
+  <colgroup>
+    <col style="width: 120px;"/>
+    <col style="width: auto;"/>
+    <col style="width: 20%;"/>
+    <col style="width: 120px;"/>
+  </colgroup>
+  <tbody>
+    <tr *ngFor="let s of allSchedule">
+      <td>{{s.scheduleYear}}.{{s.scheduleMonth}}.{{s.scheduleDay}}</td>
+      <td>{{s.scheduleContent}}</td>
+      <td>{{s.groupName}}</td>
+      <td>
+        <button class="btn btn-outline-dark mr-2" style="padding:0 5px" (click)="editingClick(s)">수정</button>
+        <button class="btn btn-outline-dark mr-2" style="padding:0 5px" (click)="deleteSchedule(s.scheduleIndex)">삭제</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="editing">
+  <form name="scheduleEditForm"
+    [formGroup]="scheduleEditForm"
+    (ngSubmit)="updateSchedule(scheduleEditForm.value)">
+    <div class="form-inline mb-2">
+      <div class="form-group mr-2">
+        <input class="form-control" type="date" name="date" value="{{d}}" [formControl]="scheduleEditForm.controls['date']">
+      </div>
+      <div class="form-group mr-2">
+        <input class="form-control" type="text" name="content" value="{{editingSchedule.scheduleContent}}" [formControl]="scheduleEditForm.controls['content']">
+      </div>
+      <div class="form-group mr-2">
+        <select class="form-control" name="groupName" value="{{editingSchedule.groupName}}" [formControl]="scheduleEditForm.controls['groupName']">
+          <option *ngFor="let g of myGroupList" value="{{g.groupName}}">{{g.groupName}}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-outline-dark">수정</button>
+    </div>
+  </form>
+</div>

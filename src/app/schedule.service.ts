@@ -48,4 +48,13 @@ export class ScheduleService {
             .delete(url, {headers: headers})
             .pipe(map( res => res.json() ));
   }
+
+  getMyScheduleByYearMonth(y: string, m: string, id: string, token: string) {
+    const url = `${this.rootUrl}/schedules/${y}/${m}/${id}`;
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
+    return this.http
+            .get(url, {headers: headers})
+            .pipe(map( res => res.json() ));
+  }
 }

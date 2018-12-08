@@ -1,3 +1,36 @@
-<p>
-  calendar works!
-</p>
+<h5 class="page-header" style="display: inline; padding:0 10px;">일정</h5>
+
+<div class="mb-4">
+  <ul>
+    <li style="display: inline; padding:0 5px; cursor:pointer;" (click)="pre()">
+      <span aria-hidden="true">&laquo;</span>
+      <span class="sr-only">Previous</span>
+    </li>
+    <li style="display: inline; padding:0 5px;">
+      {{currentYear}}
+    </li>
+    <li style="display: inline; padding:0 5px; cursor:pointer;" (click)="next()">
+      <span aria-hidden="true">&raquo;</span>
+      <span class="sr-only">Next</span>
+    </li>
+    <li style="display: inline; padding:0 10px;">
+      <button class="btn btn-info" style="padding:0 10px;" (click)="writing=!writing">등록</button>
+    </li>
+  </ul>
+  
+  <ul>
+    <li *ngFor="let m of month" style="display: inline; padding:0 10px;">
+      <a class="p-2 text-info" style="cursor:pointer;" (click)="selectMonth(m)">{{m}}월</a>
+    </li>
+  </ul>
+</div>
+
+<div class="container">
+  <div *ngIf="writing" class="container">
+    <app-schedule-write [myGroupList]="myGroupList" (writingEnd)="writingEnd($event)"></app-schedule-write>
+  </div>
+
+  <div *ngIf="!writing" class="container">
+    <app-schedule-ym [myGroupList]="myGroupList" [year]="currentYear.toString()" [month]="currentMonth"></app-schedule-ym>
+  </div>
+</div>

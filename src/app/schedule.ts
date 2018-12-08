@@ -1,8 +1,8 @@
 export interface Schedule {
     scheduleIndex: number,
-    scheduleYear: number,
-    scheduleMonth: number,
-    scheduleDay: number,
+    scheduleYear: string,
+    scheduleMonth: string,
+    scheduleDay: string,
     scheduleContent: string,
     groupIndex: number,
     groupName: string,
