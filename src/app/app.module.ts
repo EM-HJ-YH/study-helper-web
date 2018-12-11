@@ -35,6 +35,8 @@ import { GroupBoardEditComponent } from './components/group-board-edit/group-boa
 import { ScheduleService } from './schedule.service';
 import { ScheduleWriteComponent } from './components/calendar/schedule-write/schedule-write.component';
 import { ScheduleYmComponent } from './components/calendar/schedule-ym/schedule-ym.component';
+import { CafeInfoService } from './cafe-info.service';
+import { CafeBookService } from './cafe-book.service';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import { ScheduleYmComponent } from './components/calendar/schedule-ym/schedule-
     GroupService,
     GroupBoardService,
     ScheduleService,
+    CafeInfoService,
+    CafeBookService,
   ],
   bootstrap: [AppComponent]
 })
