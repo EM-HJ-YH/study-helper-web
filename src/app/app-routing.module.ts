@@ -22,6 +22,7 @@ import { CafeComponent } from './components/cafe/cafe.component';
 
 import { AdminUserComponent } from './components/admin/admin-user/admin-user.component';
 import { AdminGroupComponent } from './components/admin/admin-group/admin-group.component';
+import { AdminCafeComponent } from './components/admin/admin-cafe/admin-cafe.component';
 
 const routes: Routes = [
   { path: 'signup',  component: SignUpComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'cafe', component: CafeComponent },
   { path: 'adminuser', component: AdminUserComponent },
   { path: 'admingroup', component: AdminGroupComponent },
+  { path: 'admincafe', component: AdminCafeComponent },
 ];
 
 @NgModule({

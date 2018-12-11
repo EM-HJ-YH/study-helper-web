@@ -1,0 +1,74 @@
+<h5 class="page-header">Admin Page</h5>
+<h6>Cafe</h6>
+<form name="cafeInfoForm"
+      [formGroup]="cafeInfoForm"
+      (ngSubmit)="createCafeInfo(cafeInfoForm.value)">
+  <div class="form-inline mb-2">
+    <div class="form-group mr-2">
+      <input class="form-control" type="text" name="latitude" placeholder="위도 입력" [formControl]="cafeInfoForm.controls['latitude']">
+    </div>
+    <div class="form-group mr-2">
+      <input class="form-control" type="text" name="longitude" placeholder="경도 입력" [formControl]="cafeInfoForm.controls['longitude']">
+    </div>
+    <div class="form-group mr-2">
+      <input class="form-control" type="text" name="cafeName" placeholder="카페 이름 입력" [formControl]="cafeInfoForm.controls['cafeName']">
+    </div>
+    <div class="form-group mr-2">
+        <input class="form-control" type="text" name="cafePhone" placeholder="전화 번호 입력" [formControl]="cafeInfoForm.controls['cafePhone']">
+    </div>
+    <button type="submit" class="btn btn-outline-dark">카페 등록</button>
+  </div>
+</form>
+
+<table class="table table-striped table-sm table-condensed table-responsive-sm">
+  <colgroup>
+    <col style="width: 5%;"/>
+    <col style="width: 15%;"/>
+    <col style="width: 15%;"/>
+    <col style="width: 15%;"/>
+    <col style="width: 10%;"/>
+    <col style="width: 10%;"/>
+  </colgroup>
+  <thead>
+    <tr class="text-center">
+      <th>Index</th>
+      <th>Location</th>
+      <th>Cafe Name</th>
+      <th>Cafe Phone</th>
+      <th>수정</th>
+      <th>삭제</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cafe of cafes">
+      <td>{{cafe.cafeIndex}}</td>
+      <td>{{cafe.latitude}}, {{cafe.longitude}}</td>
+      <td>{{cafe.cafeName}}</td>
+      <td>{{cafe.cafePhone}}</td>
+      <td class="text-center"><button class="btn btn-warning btn-sm" (click)="editClick(cafe)">수정</button></td>
+      <td class="text-center"><button class="btn btn-warning btn-sm" (click)=deleteCafe(cafe.cafeIndex)>삭제</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="editing">
+  <form name="cafeInfoEditForm"
+        [formGroup]="cafeInfoEditForm"
+        (ngSubmit)="updateCafeInfo(cafeInfoEditForm.value)">
+    <div class="form-inline mb-2">
+      <div class="form-group mr-2">
+        <input class="form-control" type="text" name="latitude" value="{{editingCafe.latitude}}" [formControl]="cafeInfoEditForm.controls['latitude']">
+      </div>
+      <div class="form-group mr-2">
+        <input class="form-control" type="text" name="longitude" value="{{editingCafe.longitude}}" [formControl]="cafeInfoEditForm.controls['longitude']">
+      </div>
+      <div class="form-group mr-2">
+        <input class="form-control" type="text" name="cafeName" value="{{editingCafe.cafeName}}" [formControl]="cafeInfoEditForm.controls['cafeName']">
+      </div>
+      <div class="form-group mr-2">
+          <input class="form-control" type="text" name="cafePhone" value="{{editingCafe.cafePhone}}" [formControl]="cafeInfoEditForm.controls['cafePhone']">
+      </div>
+      <button type="submit" class="btn btn-outline-dark">수정</button>
+    </div>
+  </form>
+</div>

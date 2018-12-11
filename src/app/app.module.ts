@@ -35,6 +35,7 @@ import { CafeComponent } from './components/cafe/cafe.component';
 
 import { AdminUserComponent } from './components/admin/admin-user/admin-user.component';
 import { AdminGroupComponent } from './components/admin/admin-group/admin-group.component';
+import { AdminCafeComponent } from './components/admin/admin-cafe/admin-cafe.component';
 
 import { UserService } from './service/user.service';
 import { AuthService } from './service/auth.service';
@@ -70,6 +71,7 @@ import { CafeBookService } from './service/cafe-book.service';
     CafeComponent,
     AdminUserComponent,
     AdminGroupComponent,
+    AdminCafeComponent,
   ],
   imports: [
     BrowserModule,
