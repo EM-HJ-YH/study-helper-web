@@ -15,50 +15,64 @@ import { CafeInfoService } from 'src/app/service/cafe-info.service';
 })
 export class CafeComponent implements OnInit {
   myMap: google.maps.Map;
-  hansung = new google.maps.LatLng(37.581753, 127.010360);
   currentUser: User;
+  cafes: CafeInfo[];
 
   constructor(private router: Router,
+              private cafeInfoService: CafeInfoService,
               private authService: AuthService,) { }
 
   ngOnInit() {
     if(this.authService.isLoggedIn() && !this.authService.isAdmin()) {
       this.currentUser = this.authService.currentUser();
       var mapProp = {
-        center: this.hansung,
+        center: new google.maps.LatLng(37.581753, 127.010360),
         zoom: 15,
       };
       this.myMap = new google.maps.Map(document.getElementById('map'), mapProp);
-      this.addMarkers();
+      this.getCafes();
     } else {
       this.router.navigate(['/']);
     }
   }
 
-  addMarkers() {
-    var locations = [
-      [37.581753, 127.010360],
-      [37.588830, 127.007407],
-      [37.583906, 127.007983],
-      [37.583651, 127.001939],
-    ];
-    var title = ['한성대학교', '카페 1', '카페 2', '카페 3',];
+  async getCafes() {
+    const token: any = await this.authService.getToken();
+    this.cafeInfoService
+        .listCafe(token)
+        .subscribe(data => {
+          if(data.success) {
+            this.cafes = data.result;
+            this.addMarkers();
+          } else {
+            console.log(data.message);
+          }
+        });
+  }
 
+  addMarkers() {
     var infowindow = new google.maps.InfoWindow();
     var marker, i;
 
-    for (i = 0; i < locations.length; i++) { 
+    for (i = 0; i < this.cafes.length; i++) { 
       marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][0], locations[i][1]),
-        map: this.myMap
+        position: new google.maps.LatLng(this.cafes[i].latitude, this.cafes[i].longitude),
+        title: this.cafes[i].cafeName,
+        map: this.myMap,
       });
+
+      var bookButton: string = '<button type="buttton" onclick="this.booking()">예약</button>';
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent(title[i]);
+          infowindow.setContent(marker.title+bookButton);
           infowindow.open(this.myMap, marker);
         }
       })(marker, i));
     }
+  }
+
+  booking() {
+    alert('예약');
   }
 }
