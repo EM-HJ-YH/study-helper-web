@@ -21,6 +21,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { CafeComponent } from './components/cafe/cafe.component';
 
 import { AdminUserComponent } from './components/admin/admin-user/admin-user.component';
+import { AdminGroupComponent } from './components/admin/admin-group/admin-group.component';
 
 const routes: Routes = [
   { path: 'signup',  component: SignUpComponent },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'schedule', component: CalendarComponent },
   { path: 'cafe', component: CafeComponent },
   { path: 'adminuser', component: AdminUserComponent },
+  { path: 'admingroup', component: AdminGroupComponent },
 ];
 
 @NgModule({

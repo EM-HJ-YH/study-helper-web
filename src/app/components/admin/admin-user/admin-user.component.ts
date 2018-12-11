@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { User } from 'src/app/models/user';
@@ -22,8 +21,6 @@ export class AdminUserComponent implements OnInit {
   ngOnInit() {
     if(this.authService.isAdmin()) {
       this.getUsers();
-      this.getGroups();
-      this.getCafes();
     } else {
       this.router.navigate(['/']);
     }

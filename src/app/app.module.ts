@@ -34,6 +34,7 @@ import { ScheduleYmComponent } from './components/calendar/schedule-ym/schedule-
 import { CafeComponent } from './components/cafe/cafe.component';
 
 import { AdminUserComponent } from './components/admin/admin-user/admin-user.component';
+import { AdminGroupComponent } from './components/admin/admin-group/admin-group.component';
 
 import { UserService } from './service/user.service';
 import { AuthService } from './service/auth.service';
@@ -68,6 +69,7 @@ import { CafeBookService } from './service/cafe-book.service';
     ScheduleYmComponent,
     CafeComponent,
     AdminUserComponent,
+    AdminGroupComponent,
   ],
   imports: [
     BrowserModule,
