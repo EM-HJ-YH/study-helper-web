@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Group } from 'src/app/group';
-import { AuthService } from 'src/app/auth.service';
-import { User } from 'src/app/user';
-import { GroupService } from 'src/app/group.service';
+import { User } from 'src/app/models/user';
+import { Group } from 'src/app/models/group';
+
+import { AuthService } from 'src/app/service/auth.service';
+import { GroupService } from 'src/app/service/group.service';
 
 @Component({
   selector: 'app-my-group-list',

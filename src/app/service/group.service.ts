@@ -1,38 +1,29 @@
-import { Injectable }    from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
-
+import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
 import { map } from 'rxjs/operators';
-import { GroupBoard } from './group';
+
+import { Group } from 'src/app/models/group';
 
 @Injectable({
     providedIn: 'root'
 })
-export class GroupBoardService {
+export class GroupService {
 
   private rootUrl = 'http://54.180.105.16:80';
 
   constructor(public http: Http) { }
 
-  createGroupBoard(board: GroupBoard, token: string) {
-    const url= `${this.rootUrl}/groupBoards`;
+  createGroup(group: Group, token: string) {
+    const url= `${this.rootUrl}/groups`;
     const headers = new Headers({'Content-Type': 'application/json'});
     headers.append('x-access-token', token);
     return this.http
-            .post(url, JSON.stringify(board), {headers: headers})
+            .post(url, JSON.stringify(group), {headers: headers})
             .pipe(map( res => res.json() ));
   }
 
-  listGroupBoard(token: string) {
-    const url= `${this.rootUrl}/groupBoards`;
-    const headers = new Headers({'Content-Type': 'application/json'});
-    headers.append('x-access-token', token);
-    return this.http
-            .get(url, {headers: headers})
-            .pipe(map( res => res.json() ));
-  }
-
-  getGroupBoardByGroup(groupIndex: number, token: string) {
-    const url= `${this.rootUrl}/groupBoards/group/${groupIndex}`;
+  listGroup(token: string) {
+    const url= `${this.rootUrl}/groups`;
     const headers = new Headers({'Content-Type': 'application/json'});
     headers.append('x-access-token', token);
     return this.http
@@ -40,8 +31,8 @@ export class GroupBoardService {
             .pipe(map( res => res.json() ));
   }
 
-  getGroupBoardByIndex(boardIndex: number, token: string) {
-    const url= `${this.rootUrl}/groupBoards/${boardIndex}`;
+  listMyGroup(userId: string, token: string) {
+    const url= `${this.rootUrl}/groups/myGroup/${userId}`;
     const headers = new Headers({'Content-Type': 'application/json'});
     headers.append('x-access-token', token);
     return this.http
@@ -49,21 +40,31 @@ export class GroupBoardService {
             .pipe(map( res => res.json() ));
   }
 
-  updateGroupBoard(board: GroupBoard, token: string) {
-    const url= `${this.rootUrl}/groupBoards/${board.groupBoardIndex}`;
+  updateGroup(group: Group, token: string) {
+    const url= `${this.rootUrl}/groups/${group.groupIndex}`;
     const headers = new Headers({'Content-Type': 'application/json'});
     headers.append('x-access-token', token);
     return this.http
-            .put(url, JSON.stringify(board), {headers: headers})
+            .put(url, JSON.stringify(group), {headers: headers})
             .pipe(map( res => res.json() ));
   }
 
-  deleteGroupBoard(index: number, token: string) {
-    const url= `${this.rootUrl}/groupBoards/${index}`;
+  deleteGroup(index: number, token: string) {
+    const url= `${this.rootUrl}/groups/${index}`;
     const headers = new Headers({'Content-Type': 'application/json'});
     headers.append('x-access-token', token);
     return this.http
             .delete(url, {headers: headers})
+            .pipe(map( res => res.json() ));
+  }
+
+  removeMember(index: number, memberId: string, token: string) {
+    const url= `${this.rootUrl}/groups/removeMember/${index}/${memberId}`;
+    const headers = new Headers({'Content-Type': 'application/json'});
+    headers.append('x-access-token', token);
+    let temp: any = {dummy: 10};
+    return this.http
+            .put(url, JSON.stringify(temp), {headers: headers})
             .pipe(map( res => res.json() ));
   }
 }

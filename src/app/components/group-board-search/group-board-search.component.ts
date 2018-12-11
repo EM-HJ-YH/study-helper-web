@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GroupBoard } from 'src/app/group';
+
+import { GroupBoard } from 'src/app/models/group';
 
 @Component({
   selector: 'app-group-board-search',

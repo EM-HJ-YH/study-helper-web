@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { User } from '../../user';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -35,7 +34,7 @@ export class SignInComponent implements OnInit {
             if(data.success && data.result.token && data.result.isAdmin) {
               localStorage.setItem('token', data.result.token);
               localStorage.setItem('admin', data.result.isAdmin);
-              this.router.navigate(['admin']);
+              this.router.navigate(['adminuser']);
             } else {
               alert("관리자 로그인에 실패하였습니다.\n"+data.message);
             }

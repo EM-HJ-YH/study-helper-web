@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Post } from 'src/app/post';
-import { User } from 'src/app/user';
-import { AuthService } from 'src/app/auth.service';
-import { PostService } from 'src/app/post.service';
+import { User } from 'src/app/models/user';
+import { Post } from 'src/app/models/post';
+
+import { AuthService } from 'src/app/service/auth.service';
+import { PostService } from 'src/app/service/post.service';
 
 @Component({
   selector: 'app-post-write',

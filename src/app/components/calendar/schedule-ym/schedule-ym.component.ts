@@ -2,11 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from 'src/app/auth.service';
-import { ScheduleService } from 'src/app/schedule.service';
-import { Schedule } from 'src/app/schedule';
-import { User } from 'src/app/user';
-import { Group } from 'src/app/group';
+import { User } from 'src/app/models/user';
+import { Group } from 'src/app/models/group';
+import { Schedule } from 'src/app/models/schedule';
+
+import { AuthService } from 'src/app/service/auth.service';
+import { ScheduleService } from 'src/app/service/schedule.service';
 
 @Component({
   selector: 'app-schedule-ym',

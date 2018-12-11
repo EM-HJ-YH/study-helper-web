@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Post } from '../../post';
-import { User } from 'src/app/user';
-import { AuthService } from 'src/app/auth.service';
-import { PostService } from 'src/app/post.service';
-import { Group } from 'src/app/group';
-import { GroupService } from 'src/app/group.service';
+import { User } from 'src/app/models/user';
+import { Post } from 'src/app/models/post';
+import { Group } from 'src/app/models/group';
+
+import { AuthService } from 'src/app/service/auth.service';
+import { PostService } from 'src/app/service/post.service';
+import { GroupService } from 'src/app/service/group.service';
 
 @Component({
   selector: 'app-post-detail',

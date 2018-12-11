@@ -12,7 +12,7 @@
     <a *ngIf="authService.isLoggedIn() && !authService.isAdmin()" class="p-2 text-dark" routerLink="/mypage" routerLinkActive="active">
       My Page
     </a>
-    <a *ngIf="authService.isAdmin()" class="p-2 text-dark" routerLink="/admin" routerLinkActive="active">
+    <a *ngIf="authService.isAdmin()" class="p-2 text-dark">
       Admin
     </a>
     <a *ngIf="authService.isLoggedIn()" class="p-2 text-dark" (click)="onLogoutClick()"
@@ -28,6 +28,7 @@
       <li *ngIf="authService.isLoggedIn() && !authService.isAdmin()"><a class="p-2 text-muted" routerLink="/mygrouplist" routerLinkActive="active">그룹 게시판</a></li>
       <li *ngIf="authService.isLoggedIn() && !authService.isAdmin()"><a class="p-2 text-muted" routerLink="/schedule" routerLinkActive="active">일정</a></li>
       <li *ngIf="authService.isLoggedIn() && !authService.isAdmin()"><a class="p-2 text-muted" routerLink="/cafe" routerLinkActive="active">스터디 카페</a></li>
+      <li *ngIf="authService.isAdmin()"><a class="p-2 text-muted" routerLink="/adminuser" routerLinkActive="active">유저 관리</a></li>
     </ul>
   </nav>
 </div>

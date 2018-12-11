@@ -1,8 +1,8 @@
-import { Injectable }    from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
 import { map } from 'rxjs/operators';
 
-import { CafeBook } from 'src/app/cafe';
+import { CafeBook } from 'src/app/models/cafe';
 
 @Injectable({
     providedIn: 'root'

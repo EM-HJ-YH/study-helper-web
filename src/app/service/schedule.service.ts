@@ -1,8 +1,8 @@
-import { Injectable }    from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
 import { map } from 'rxjs/operators';
 
-import { Schedule } from './schedule';
+import { Schedule } from 'src/app/models/schedule';
 
 @Injectable({
     providedIn: 'root'

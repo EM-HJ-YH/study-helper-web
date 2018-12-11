@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { User } from '../../user';
-import { AuthService } from 'src/app/auth.service';
-import { UserService } from 'src/app/user.service';
+import { User } from 'src/app/models/user';
+
+import { AuthService } from 'src/app/service/auth.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-my-page',

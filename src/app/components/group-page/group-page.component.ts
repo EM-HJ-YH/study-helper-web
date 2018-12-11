@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { GroupBoard } from 'src/app/group';
-import { GroupBoardService } from 'src/app/group-board.service';
-import { AuthService } from 'src/app/auth.service';
-import { User } from 'src/app/user';
+import { User } from 'src/app/models/user';
+import { GroupBoard } from 'src/app/models/group';
+
+import { AuthService } from 'src/app/service/auth.service';
+import { GroupBoardService } from 'src/app/service/group-board.service';
 
 @Component({
   selector: 'app-group-page',
