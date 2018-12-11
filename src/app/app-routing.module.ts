@@ -23,6 +23,7 @@ import { CafeComponent } from './components/cafe/cafe.component';
 import { AdminUserComponent } from './components/admin/admin-user/admin-user.component';
 import { AdminGroupComponent } from './components/admin/admin-group/admin-group.component';
 import { AdminCafeComponent } from './components/admin/admin-cafe/admin-cafe.component';
+import { AdminCafeBookComponent } from './components/admin/admin-cafe-book/admin-cafe-book.component';
 
 const routes: Routes = [
   { path: 'signup',  component: SignUpComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'adminuser', component: AdminUserComponent },
   { path: 'admingroup', component: AdminGroupComponent },
   { path: 'admincafe', component: AdminCafeComponent },
+  { path: 'admincafebook', component: AdminCafeBookComponent },
 ];
 
 @NgModule({
