@@ -20,7 +20,7 @@ export class MyGroupListComponent implements OnInit {
               private router: Router,) { }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn()) {
+    if(this.authService.isLoggedIn() && !this.authService.isAdmin()) {
       this.currentUser = this.authService.currentUser();
       this.getGroups();
     } else{

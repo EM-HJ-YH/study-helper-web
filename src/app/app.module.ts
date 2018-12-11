@@ -12,10 +12,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { MyPageComponent } from './components/my-page/my-page.component';
 import { GroupPageComponent } from './components/group-page/group-page.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
-import { ChatComponent } from './components/chat/chat.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
-import { NoticeComponent } from './components/notice/notice.component';
 import { CafeComponent } from './components/cafe/cafe.component';
 
 import { UserService } from './user.service';
@@ -46,10 +44,8 @@ import { ScheduleYmComponent } from './components/calendar/schedule-ym/schedule-
     MyPageComponent,
     GroupPageComponent,
     CalendarComponent,
-    ChatComponent,
     AdminComponent,
     RecruitmentComponent,
-    NoticeComponent,
     CafeComponent,
     NavbarComponent,
     EditProfileComponent,

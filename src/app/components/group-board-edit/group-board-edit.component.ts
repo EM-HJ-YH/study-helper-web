@@ -36,7 +36,7 @@ export class GroupBoardEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn()) {
+    if(this.authService.isLoggedIn() && !this.authService.isAdmin()) {
       this.currentUser = this.authService.currentUser();
       this.getPost();
     } else {

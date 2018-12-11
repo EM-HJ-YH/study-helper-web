@@ -18,13 +18,10 @@ export class MyPageComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    if(this.authService.isAdmin()) {
-      this.router.navigate(['/']);
-    }
-    if(this.authService.isLoggedIn()) {
+    if(this.authService.isLoggedIn() && !this.authService.isAdmin()) {
       this.currentUser = this.authService.currentUser();
     } else {
-      this.router.navigate(['signin']);
+      this.router.navigate(['/']);
     }
   }
 

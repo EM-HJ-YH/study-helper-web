@@ -35,7 +35,7 @@ export class EditProfileComponent implements OnInit {
             this.currentUser = user.result;
           });
     } else {
-      this.router.navigate(['signin']);
+      this.router.navigate(['/']);
     }
   }
 

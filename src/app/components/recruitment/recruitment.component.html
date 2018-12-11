@@ -34,7 +34,7 @@
 
 <div class="row">
   <div class="col-md-3 mb-1">
-    <button class="btn btn-outline-dark btn-sm" (click)="onWrite()">글 작성</button>
+    <button *ngIf="!authService.isAdmin()" class="btn btn-outline-dark btn-sm" (click)="onWrite()">글 작성</button>
   </div>
 
   <!-- 검색 폼 -->

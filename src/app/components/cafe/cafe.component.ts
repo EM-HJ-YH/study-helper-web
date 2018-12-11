@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {  } from 'googlemaps';
+import { Router } from '@angular/router';
+
+import { AuthService } from 'src/app/auth.service';
+import { User } from 'src/app/user';
 
 @Component({
   selector: 'app-cafe',
@@ -9,16 +13,23 @@ import {  } from 'googlemaps';
 export class CafeComponent implements OnInit {
   myMap: google.maps.Map;
   hansung = new google.maps.LatLng(37.581753, 127.010360);
+  currentUser: User;
 
-  constructor() { }
+  constructor(private router: Router,
+              private authService: AuthService,) { }
 
   ngOnInit() {
-    var mapProp = {
-      center: this.hansung,
-      zoom: 15,
-    };
-    this.myMap = new google.maps.Map(document.getElementById('map'), mapProp);
-    this.addMarkers();
+    if(this.authService.isLoggedIn() && !this.authService.isAdmin()) {
+      this.currentUser = this.authService.currentUser();
+      var mapProp = {
+        center: this.hansung,
+        zoom: 15,
+      };
+      this.myMap = new google.maps.Map(document.getElementById('map'), mapProp);
+      this.addMarkers();
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   addMarkers() {

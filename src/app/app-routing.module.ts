@@ -7,8 +7,6 @@ import { MyPageComponent } from './components/my-page/my-page.component';
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { GroupPageComponent } from './components/group-page/group-page.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
-import { ChatComponent } from './components/chat/chat.component';
-import { NoticeComponent } from './components/notice/notice.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CafeComponent } from './components/cafe/cafe.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
@@ -32,8 +30,6 @@ const routes: Routes = [
   { path: 'mygroup/detail/:groupBoardIndex', component: GroupBoardDetailComponent },
   { path: 'mygroup/postedit', component: GroupBoardEditComponent },
   { path: 'schedule', component: CalendarComponent },
-  { path: 'chat', component: ChatComponent },
-  { path: 'mypage/notice', component: NoticeComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'cafe', component: CafeComponent },
   { path: 'mypage/editprofile', component: EditProfileComponent },
