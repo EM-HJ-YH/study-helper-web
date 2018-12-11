@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {  } from 'googlemaps';
 import { Router } from '@angular/router';
+import {  } from 'googlemaps';
 
-import { AuthService } from 'src/app/auth.service';
-import { User } from 'src/app/user';
+import { User } from 'src/app/models/user';
+import { CafeInfo, CafeBook } from 'src/app/models/cafe';
+
+import { AuthService } from 'src/app/service/auth.service';
+import { CafeInfoService } from 'src/app/service/cafe-info.service';
 
 @Component({
   selector: 'app-cafe',
