@@ -25,7 +25,6 @@ export class PostWriteComponent implements OnInit {
     this.postForm = fb.group({
       'title': [''],
       'maxNum': [''],
-      'file': [],
       'contents': [''],
     });
   }
@@ -52,7 +51,6 @@ export class PostWriteComponent implements OnInit {
       isRecruiting: true,
       members: [this.currentUser.userId],
     }
-    if(form.file) this.post.file = form.file;
     var res = confirm("작성을 완료하시겠습니까?");
     if(res) {
       const token: any = await this.authService.getToken();
