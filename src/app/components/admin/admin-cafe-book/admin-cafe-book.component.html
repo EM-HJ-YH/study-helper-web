@@ -4,6 +4,7 @@
 <table class="table table-striped table-sm table-condensed table-responsive-sm">
   <colgroup>
     <col style="width: 5%;"/>
+    <col style="width: 15%;"/>
     <col style="width: 20%;"/>
     <col style="width: 15%;"/>
     <col style="width: 20%;"/>
@@ -13,6 +14,7 @@
   <thead>
     <tr class="text-center">
       <th>Index</th>
+      <th>카페 이름</th>
       <th>예약자</th>
       <th>예약 날짜</th>
       <th>예약 시간</th>
@@ -23,6 +25,7 @@
   <tbody>
     <tr *ngFor="let book of books">
       <td>{{book.cafeBookIndex}}</td>
+      <td>{{findCafeName(book.cafeIndex)}}</td>
       <td>{{book.cafeBookUserId}}</td>
       <td>{{book.cafeBookDate}}</td>
       <td>{{book.cafeBookBeginTime}} ~ {{book.cafeBookEndTime}}</td>

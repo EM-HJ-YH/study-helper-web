@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { CafeBook } from 'src/app/models/cafe';
+import { CafeBook, CafeInfo } from 'src/app/models/cafe';
 
 import { AuthService } from 'src/app/service/auth.service';
 import { CafeBookService } from 'src/app/service/cafe-book.service';
+import { CafeInfoService } from 'src/app/service/cafe-info.service';
 
 @Component({
   selector: 'app-admin-cafe-book',
@@ -14,12 +15,14 @@ import { CafeBookService } from 'src/app/service/cafe-book.service';
 })
 export class AdminCafeBookComponent implements OnInit {
   books: CafeBook[];
+  cafes: CafeInfo[];
   cafeBookEditForm: FormGroup;
   editing: boolean = false;
   editingCafeBook: CafeBook;
 
   constructor(private authService: AuthService,
               private cafeBookService: CafeBookService,
+              private cafeInfoService: CafeInfoService,
               private router: Router, fb: FormBuilder) {
     this.cafeBookEditForm = fb.group({
       'date': [''],
@@ -31,6 +34,7 @@ export class AdminCafeBookComponent implements OnInit {
   ngOnInit() {
     if(this.authService.isAdmin()) {
       this.getCafeBooks();
+      this.getCafes();
     } else {
       this.router.navigate(['/']);
     }
@@ -45,6 +49,21 @@ export class AdminCafeBookComponent implements OnInit {
             this.books = data.result;
           } else console.log(data.message);
         });
+  }
+
+  async getCafes() {
+    const token: any = await this.authService.getToken();
+    this.cafeInfoService
+        .listCafe(token)
+        .subscribe(data => {
+          if(data.success) {
+            this.cafes = data.result;
+          } else console.log(data.message);
+        });
+  }
+
+  findCafeName(cafeIndex: number): string {
+    return this.cafes.find(x=>x.cafeIndex==cafeIndex).cafeName;
   }
 
   async deleteCafeBook(index: number) {
