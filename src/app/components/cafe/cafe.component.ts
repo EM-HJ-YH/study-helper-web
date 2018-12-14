@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {  } from 'googlemaps';
 
 import { User } from 'src/app/models/user';
-import { CafeInfo, CafeBook } from 'src/app/models/cafe';
+import { CafeInfo } from 'src/app/models/cafe';
 
 import { AuthService } from 'src/app/service/auth.service';
 import { CafeInfoService } from 'src/app/service/cafe-info.service';
@@ -60,19 +60,18 @@ export class CafeComponent implements OnInit {
         title: this.cafes[i].cafeName,
         map: this.myMap,
       });
-
-      var bookButton: string = '<button type="buttton" onclick="this.booking()">예약</button>';
+      var bookButton = '<button id="book" type="buttton">예약</button>';
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent(marker.title+bookButton);
+          infowindow.setContent(marker.title);
           infowindow.open(this.myMap, marker);
         }
       })(marker, i));
     }
   }
 
-  booking() {
-    alert('예약');
+  booking(cafeIndex: number) {
+    this.router.navigate(['cafebook/'+cafeIndex]);
   }
 }

@@ -1,1 +1,14 @@
-<div id="map" style="width:100%; height:450px"></div>
+<div id="map" style="width:100%; height:450px" class="mb-4"></div>
+
+<table class="table table-striped table-sm table-condensed table-responsive-sm" style="width: 50%;">
+  <thead>
+
+  </thead>
+  <tbody>
+    <tr *ngFor="let cafe of cafes">
+      <td>{{cafe.cafeName}}</td>
+      <td>{{cafe.cafePhone}}</td>
+      <td class="text-center"><button type="buttton" class="btn btn-sm px-1 py-0" (click)=booking(cafe.cafeIndex)>예약</button></td>
+    </tr>
+  </tbody>
+</table>

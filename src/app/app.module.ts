@@ -13,6 +13,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { MyPageComponent } from './components/my-page/my-page.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { MyBookComponent } from './components/my-page/my-book/my-book.component';
 
 import { RecruitmentComponent } from './components/recruitment/recruitment.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
@@ -32,6 +33,7 @@ import { ScheduleWriteComponent } from './components/calendar/schedule-write/sch
 import { ScheduleYmComponent } from './components/calendar/schedule-ym/schedule-ym.component';
 
 import { CafeComponent } from './components/cafe/cafe.component';
+import { CafeBookComponent } from './components/cafe/cafe-book/cafe-book.component';
 
 import { AdminUserComponent } from './components/admin/admin-user/admin-user.component';
 import { AdminGroupComponent } from './components/admin/admin-group/admin-group.component';
@@ -55,6 +57,7 @@ import { CafeBookService } from './service/cafe-book.service';
     SignInComponent,
     MyPageComponent,
     EditProfileComponent,
+    MyBookComponent,
     RecruitmentComponent,
     PostDetailComponent,
     PostWriteComponent,
@@ -70,6 +73,7 @@ import { CafeBookService } from './service/cafe-book.service';
     ScheduleWriteComponent,
     ScheduleYmComponent,
     CafeComponent,
+    CafeBookComponent,
     AdminUserComponent,
     AdminGroupComponent,
     AdminCafeComponent,
