@@ -58,6 +58,7 @@ export class CafeComponent implements OnInit {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(this.cafes[i].latitude, this.cafes[i].longitude),
         title: this.cafes[i].cafeName,
+        label: this.cafes[i].cafeIndex.toString(),
         map: this.myMap,
       });
       var bookButton = '<button id="book" type="buttton">예약</button>';
