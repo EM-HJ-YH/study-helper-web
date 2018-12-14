@@ -8,6 +8,7 @@
     <col style="width: 15%;"/>
     <col style="width: 20%;"/>
     <col style="width: 10%;"/>
+    <col style="width: 10%;"/>
   </colgroup>
   <thead>
     <tr class="text-center">
@@ -15,6 +16,7 @@
       <th>예약자</th>
       <th>예약 날짜</th>
       <th>예약 시간</th>
+      <th>변경</th>
       <th>취소</th>
     </tr>
   </thead>
@@ -24,7 +26,27 @@
       <td>{{book.cafeBookUserId}}</td>
       <td>{{book.cafeBookDate}}</td>
       <td>{{book.cafeBookBeginTime}} ~ {{book.cafeBookEndTime}}</td>
+      <td class="text-center"><button class="btn btn-warning btn-sm" (click)=editClick(book)>변경</button></td>
       <td class="text-center"><button class="btn btn-warning btn-sm" (click)=deleteCafeBook(book.cafeBookIndex)>취소</button></td>
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="editing">
+  <form name="cafeBookEditForm"
+        [formGroup]="cafeBookEditForm"
+        (ngSubmit)="updateCafeBook(cafeBookEditForm.value)">
+    <div class="form-inline mb-2">
+      <div class="form-group mr-2">
+        <input class="form-control" type="date" name="date" value="{{editingCafeBook.cafeBookDate}}" [formControl]="cafeBookEditForm.controls['date']">
+      </div>
+      <div class="form-group mr-2">
+        <input class="form-control" type="time" name="beginTime" value="{{editingCafeBook.cafeBookBeginTime}}" [formControl]="cafeBookEditForm.controls['beginTime']">
+      </div>
+      <div class="form-group mr-2">
+        <input class="form-control" type="time" name="endTime" value="{{editingCafeBook.cafeBookEndTime}}" [formControl]="cafeBookEditForm.controls['endTime']">
+      </div>
+      <button type="submit" class="btn btn-outline-dark">변경</button>
+    </div>
+  </form>
+</div>
