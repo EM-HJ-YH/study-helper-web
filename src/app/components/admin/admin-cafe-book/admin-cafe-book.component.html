@@ -41,6 +41,11 @@
         (ngSubmit)="updateCafeBook(cafeBookEditForm.value)">
     <div class="form-inline mb-2">
       <div class="form-group mr-2">
+        <label class="mr-2"><strong>{{editingCafeBook.cafeBookIndex}}</strong></label>
+        <label class="mr-2"><strong>{{findCafeName(editingCafeBook.cafeIndex)}}</strong></label>
+        <label><strong>{{editingCafeBook.cafeBookUserId}}</strong></label>
+      </div>
+      <div class="form-group mr-2">
         <input class="form-control" type="date" name="date" value="{{editingCafeBook.cafeBookDate}}" [formControl]="cafeBookEditForm.controls['date']">
       </div>
       <div class="form-group mr-2">

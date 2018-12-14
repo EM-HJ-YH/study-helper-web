@@ -63,7 +63,8 @@ export class AdminCafeBookComponent implements OnInit {
   }
 
   findCafeName(cafeIndex: number): string {
-    return this.cafes.find(x=>x.cafeIndex==cafeIndex).cafeName;
+    if(this.cafes==null) return '';
+    else return this.cafes.find(x=>x.cafeIndex==cafeIndex).cafeName;
   }
 
   async deleteCafeBook(index: number) {
