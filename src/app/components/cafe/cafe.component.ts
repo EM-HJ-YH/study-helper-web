@@ -61,7 +61,6 @@ export class CafeComponent implements OnInit {
         label: this.cafes[i].cafeIndex.toString(),
         map: this.myMap,
       });
-      var bookButton = '<button id="book" type="buttton">예약</button>';
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
