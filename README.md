@@ -1,27 +1,17 @@
-# StudyHelper
+# Study Helper - Web
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.5.
+Web & App Project
 
-## Development server
+## Guide
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+NodeJS 설치 `https://nodejs.org`.
+Angular CLI 설치 `npm install -g @angular/cli`.
+다운로드 Project `https://github.com/EM-HJ-YH/study-helper-web.git`.
+다운로드 폴더에 가서 `npm install` 실행.
+`node_modules/@types/googlemaps/index.d.ts` 파일 수정.
+-> `declare module 'googlemaps';`을 추가.
+`src/app/service`의 모든 파일에서 모든 url을 본인의 것으로 수정.
+`src/index.html`의 `<script async defer src="//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>`에서 YOUR_API_KEY 부분을 본인의 것으로 수정.
+Google Map API KEY 발급은 `https://blog.cosmosfarm.com/archives/389/%EA%B5%AC%EA%B8%80-%EC%A7%80%EB%8F%84-api-%ED%82%A4-%EB%B0%9C%EA%B8%89-%EB%B0%9B%EB%8A%94-%EB%B0%A9%EB%B2%95-maps-javascript-api/` 사이트 참조
+로컬에서 실행 시 `ng serve --open` 사용.
+AWS 인스턴스에서 실행 시 `ng serve --host 0.0.0.0` 사용.
