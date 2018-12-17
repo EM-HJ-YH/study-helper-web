@@ -33,7 +33,6 @@ export class PostEditComponent implements OnInit {
     this.postEditForm = fb.group({
       'title': [''],
       'maxNum': [''],
-      'file': [],
       'contents': [''],
     });
   }
@@ -58,7 +57,6 @@ export class PostEditComponent implements OnInit {
   async postEdit(form: any) {
     if(form.title != "") this.post.boardTitle = form.title;
     if(form.maxNum != "") this.post.memberCount = Number(form.maxNum);
-    if(form.file != "") this.post.file = form.file;
     if(form.contents != "") this.post.boardContent = form.contents;
     var res = confirm("수정을 완료하시겠습니까?");
     if(res) {

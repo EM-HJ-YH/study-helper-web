@@ -7,5 +7,4 @@ export interface Post{
     memberCount: number,
     members: string[],
     isRecruiting: boolean,
-    file?: File,
 };
