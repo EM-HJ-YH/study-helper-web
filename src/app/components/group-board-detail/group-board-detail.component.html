@@ -21,6 +21,11 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="post.fileLocation">
+          <td colspan="6">
+            <img src="{{post.fileLocation}}">
+          </td>
+        </tr>
         <tr>
           <td colspan="6" style="white-space: pre-wrap">{{post.groupBoardContent}}</td>
         </tr>

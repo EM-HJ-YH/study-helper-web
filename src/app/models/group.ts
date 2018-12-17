@@ -13,5 +13,5 @@ export interface GroupBoard {
     groupBoardContent: string,
     groupBoardPosterId: string,
     groupBoardDate: string,
-    file?: File,
+    fileLocation?: string,
 }

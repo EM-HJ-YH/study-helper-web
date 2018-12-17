@@ -7,6 +7,7 @@ import { GroupBoard } from 'src/app/models/group';
 
 import { AuthService } from 'src/app/service/auth.service';
 import { GroupBoardService } from 'src/app/service/group-board.service';
+import { FileService } from 'src/app/service/file.service';
 
 @Component({
   selector: 'app-group-board-edit',
@@ -25,13 +26,14 @@ export class GroupBoardEditComponent implements OnInit {
   };
   postEditForm: FormGroup;
   currentUser: User;
+  fileToUpload: File = null;
 
   constructor(fb: FormBuilder, private router: Router,
               private authService: AuthService,
-              private groupBoardService: GroupBoardService,) {
+              private groupBoardService: GroupBoardService,
+              private fileService: FileService) {
     this.postEditForm = fb.group({
       'title': [''],
-      'file': [],
       'contents': [''],
     });
   }
@@ -57,9 +59,28 @@ export class GroupBoardEditComponent implements OnInit {
         });
   }
 
+  handleFileInput(files: FileList) {
+    if(files && files.length > 0) {
+      this.fileToUpload = files.item(0);
+      if(this.fileToUpload.type.includes('image')) {
+        this.uploadFile();
+      } else alert('이미지 파일만 업로드할 수 있습니다.');
+    }
+  }
+
+  async uploadFile() {
+    const token: any = await this.authService.getToken();
+    this.fileService
+        .uploadFile(this.fileToUpload, token)
+        .subscribe(data => {
+          if(data.success) {
+            this.post.fileLocation = data.result.location;
+          } else console.log(data.message);
+        });
+  }
+
   async postEdit(form: any) {
     if(form.title != "") this.post.groupBoardTitle = form.title;
-    if(form.file != "") this.post.file = form.file;
     if(form.contents != "") this.post.groupBoardContent = form.contents;
     var res = confirm("수정을 완료하시겠습니까?");
     if(res) {

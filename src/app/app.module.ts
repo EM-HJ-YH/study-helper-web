@@ -48,6 +48,7 @@ import { GroupBoardService } from './service/group-board.service';
 import { ScheduleService } from './service/schedule.service';
 import { CafeInfoService } from './service/cafe-info.service';
 import { CafeBookService } from './service/cafe-book.service';
+import { FileService } from './service/file.service';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { CafeBookService } from './service/cafe-book.service';
     ScheduleService,
     CafeInfoService,
     CafeBookService,
+    FileService,
   ],
   bootstrap: [AppComponent]
 })

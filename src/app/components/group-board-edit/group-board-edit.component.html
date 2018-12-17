@@ -2,7 +2,8 @@
 
 <form name="postEditForm"
       [formGroup]="postEditForm"
-      (ngSubmit)="postEdit(postEditForm.value)">
+      (ngSubmit)="postEdit(postEditForm.value)"
+      enctype="multipart/form-data">
   <div class="border rounded mb-2">
     <div class="container mt-3 mb-3">
         <div class="form-row mb-2">
@@ -10,7 +11,7 @@
             <input type="text" value="{{post.groupBoardTitle}}" class="form-control" name="title" placeholder="제목 입력" [formControl]="postEditForm.controls['title']">
           </div>
           <div class="col-6">
-            <input type="file" class="form-control" name="file" [formControl]="postEditForm.controls['file']">
+            <input type="file" name="file" accept="image/*" (change)="handleFileInput($event.target.files)">
           </div>
         </div>
         <div>

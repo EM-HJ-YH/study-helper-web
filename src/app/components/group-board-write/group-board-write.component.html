@@ -1,7 +1,8 @@
 <h5 class="page-header">{{currentGroupName}}의 게시판 글 작성</h5>
 <form name="postForm"
       [formGroup]="postForm"
-      (ngSubmit)="postWrite(postForm.value)">
+      (ngSubmit)="postWrite(postForm.value)"
+      enctype="multipart/form-data">
   <div class="border rounded mb-2">
     <div class="container mt-3 mb-3">
         <div class="form-row mb-2">
@@ -9,7 +10,7 @@
             <input type="text" class="form-control" name="title" placeholder="제목 입력" [formControl]="postForm.controls['title']">
           </div>
           <div class="col-6">
-            <input type="file" class="form-control" name="file" [formControl]="postForm.controls['file']">
+            <input type="file" name="file" accept="image/*" (change)="handleFileInput($event.target.files)">
           </div>
         </div>
         <div>
